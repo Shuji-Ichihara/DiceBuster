@@ -9,7 +9,8 @@ public class FadeController : SingletonMonoBehaviour<FadeController>
     [SerializeField]
     private Image _fadeImage = null;
 
-    [Header("フェードする秒数"), SerializeField]
+    [SerializeField]
+    [Header("フェードする秒数"), Range(0f, 5f)]
     private float _fadeSecond = 2f;
 
     private void Start()
