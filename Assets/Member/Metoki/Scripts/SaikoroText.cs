@@ -7,19 +7,30 @@ public class SaikoroText : MonoBehaviour
 {
     [SerializeField]
     private GameObject dice;
-    Rigidbody2D rb2D;
+    private Rigidbody2D rb2D;
     private Image diceImage;
     private int preNum;
     [SerializeField]
     private Text text;
-    float posY;
-
+    [SerializeField]
+    private float autoStartDelay = 2f; // 自動開始の遅延時間（秒）
     private bool isRandom = false;
+
+    [Header("ルーレット終了時の選択番号 (0〜7)")]
+    [SerializeField]
+    private int fixedCase = -1; // -1ならランダム、0〜7なら固定
+
+    [Header("高度の設定")]
+    [SerializeField]
+    private float launchSpeed = 5f; // 初速を統一する値
 
     void Start()
     {
         diceImage = dice.GetComponent<Image>();
         rb2D = dice.GetComponent<Rigidbody2D>();
+
+        // 指定時間後にルーレットを開始
+        Invoke(nameof(StartDiceRoll), autoStartDelay);
     }
 
     void Update()
@@ -32,16 +43,16 @@ public class SaikoroText : MonoBehaviour
                 switch (num)
                 {
                     case 0:
-                        text.text = "サ";
+                        text.text = "キ";
                         break;
                     case 1:
-                        text.text = "イ";
+                        text.text = "ュ";
                         break;
                     case 2:
-                        text.text = "コ";
+                        text.text = "ー";
                         break;
                     case 3:
-                        text.text = "ロ";
+                        text.text = "ブ";
                         break;
                     case 4:
                         text.text = "バ";
@@ -60,44 +71,47 @@ public class SaikoroText : MonoBehaviour
             }
             else
             {
-                Debug.Log(preNum + 1);
                 isRandom = false;
-                switch (this.gameObject.name)
+                int finalNum = fixedCase >= 0 && fixedCase < 8 ? fixedCase : preNum;
+                Debug.Log(finalNum + 1);
+
+                switch (finalNum)
                 {
-                    case "sa":
-                        text.text = "サ";
+                    case 0:
+                        text.text = "キ";
                         break;
-                    case "i":
-                        text.text = "イ";
+                    case 1:
+                        text.text = "ュ";
                         break;
-                    case "ko":
-                        text.text = "コ";
+                    case 2:
+                        text.text = "ー";
                         break;
-                    case "ro":
-                        text.text = "ロ";
+                    case 3:
+                        text.text = "ブ";
                         break;
-                    case "ba":
+                    case 4:
                         text.text = "バ";
                         break;
-                    case "su":
+                    case 5:
                         text.text = "ス";
                         break;
-                    case "ta":
+                    case 6:
                         text.text = "タ";
                         break;
-                    case "a":
+                    case 7:
                         text.text = "ー";
                         break;
                 }
             }
         }
     }
-    //クリックで呼ぶ
-    public void OnClickDice()
+
+    private void StartDiceRoll()
     {
-        if (rb2D.IsSleeping() && !isRandom)
+        if (!isRandom)
         {
-            rb2D.AddForce(new Vector2(0f, 1000f));
+            // 初速を統一して設定
+            rb2D.velocity = Vector2.up * launchSpeed;
             isRandom = true;
         }
     }
