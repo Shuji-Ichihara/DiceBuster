@@ -18,8 +18,7 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    // 攻撃を受けるメソッド
-    // 引数で指定されたダメージ量だけ体力を減らし、体力が0以下になると死亡する
+    // 攻撃
     public void TakeDamage(int damage)
     {
         // ダメージを体力から減算
@@ -35,8 +34,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // 死亡メソッド
-    // エネミーが死亡した際に呼び出され、ログを表示してオブジェクトを削除する
+    // 死亡
     private void Die()
     {
         // 死亡ログを表示
@@ -45,8 +43,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject, 1f); // 1秒後に削除
     }
 
-    // 敵を攻撃するメソッド
-    // 引数で指定されたターゲットがエネミーである場合、そのエネミーに攻撃力分のダメージを与える
+    // 敵を攻撃（ターゲットをプレイヤーに変更）
     public void AttackTarget(GameObject target)
     {
         // 攻撃中でない場合のみ実行
@@ -55,14 +52,14 @@ public class Enemy : MonoBehaviour
         // 攻撃を開始
         isAttacking = true;
 
-        // ターゲットのEnemyコンポーネントを取得
-        Enemy targetEnemy = target.GetComponent<Enemy>();
+        // ターゲットのPlayerコンポーネントを取得
+        Player targetPlayer = target.GetComponent<Player>();
 
-        // ターゲットがエネミーの場合
-        if (targetEnemy != null)
+        // ターゲットがプレイヤーの場合
+        if (targetPlayer != null)
         {
             // 攻撃ログを表示
-            Debug.Log("Attacking target with power: " + attackPower);
+            Debug.Log("Attacking player with power: " + attackPower);
 
             // 攻撃アニメーションを再生
             if (animator != null)
@@ -71,18 +68,18 @@ public class Enemy : MonoBehaviour
             }
 
             // アニメーション終了時にダメージを与える処理をコルーチンで実行
-            StartCoroutine(ApplyDamageAfterAnimation(targetEnemy));
+            StartCoroutine(ApplyDamageAfterAnimation(targetPlayer));
         }
         else
         {
-            // ターゲットがエネミーでない場合のログを表示
-            Debug.Log("Target is not an enemy!");
+            // ターゲットがプレイヤーでない場合のログを表示
+            Debug.Log("Target is not a player!");
             isAttacking = false; // 攻撃終了
         }
     }
 
     // アニメーション終了後にダメージを適用するコルーチン
-    private System.Collections.IEnumerator ApplyDamageAfterAnimation(Enemy targetEnemy)
+    private System.Collections.IEnumerator ApplyDamageAfterAnimation(Player targetPlayer)
     {
         // 攻撃アニメーションの長さを取得（Animatorに"Attack"の再生時間が必要）
         float attackAnimationTime = animator.GetCurrentAnimatorStateInfo(0).length;
@@ -91,7 +88,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(attackAnimationTime);
 
         // ターゲットにダメージを与える
-        targetEnemy.TakeDamage(attackPower);
+        targetPlayer.TakeDamage(attackPower);
 
         // 攻撃終了
         isAttacking = false;
