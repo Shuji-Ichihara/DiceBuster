@@ -1,0 +1,8 @@
+{    
+    "FieldData":[
+        {"FieldType":"Normal","SizeOfEffect":"0"},
+        {"FieldType":"Attack","SizeOfEffect":"1"},
+        {"FieldType":"Health","SizeOfEffect":"2"},
+        {"FieldType":"Guard" ,"SizeOfEffect":"1"}
+    ]
+}
