@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Member/Ichihara/Scenes/First.unity
+    guid: 0734a7622e7c57e42a7df3d90c8dc0d6
+  - enabled: 1
+    path: Assets/Member/Ichihara/Scenes/Second.unity
+    guid: f19d9c0c4919fd347b7cdd4efb2bab07
+  - enabled: 1
+    path: Assets/Member/Ichihara/Scenes/Third.unity
+    guid: 435558b0b2199b3469533d1c21170659
   m_configObjects: {}
