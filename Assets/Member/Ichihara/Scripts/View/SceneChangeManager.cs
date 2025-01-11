@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneChangeManager : SingletonMonoBehaviour<SceneChangeManager>
 {
     // 遷移するシーンアセットの名称
+    public string[] SceneNames => _sceneNames;
     private string[] _sceneNames = new string[] { };
 
     // 
