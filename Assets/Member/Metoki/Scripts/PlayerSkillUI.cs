@@ -49,7 +49,7 @@ public class PlayerSkillUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            GetComponent<PlayerHPUI>().Damage(30);
+            GetComponent<PlayerSkillUI>().Damage(30);
         }
         Heal(_moveTest._moveCount);
     }
