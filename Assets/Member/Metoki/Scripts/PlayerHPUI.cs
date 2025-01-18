@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHPUI : MonoBehaviour
+public class PlayerHPUI : SingletonMonoBehaviour<PlayerHPUI>
 {
     //HPÉoÅ[
     [SerializeField]
@@ -19,8 +20,8 @@ public class PlayerHPUI : MonoBehaviour
     void Start()
     {
         //èâä˙ê›íË
-        _currentHP = _maxHP;
-        UpdateHP();
+        //_currentHP = GameManager.Instance.PlayerParameter.GetMaxHp();
+        //UpdateHP();
     }
 
     //HPå∏è≠(âº)
@@ -41,7 +42,7 @@ public class PlayerHPUI : MonoBehaviour
 
     private void UpdateHP()
     {
-        _hpUI.value = _currentHP / _maxHP;
+        _hpUI.value = _currentHP / GameManager.Instance.PlayerParameter.GetMaxHp();
     }
 
     // Update is called once per frame
@@ -55,5 +56,11 @@ public class PlayerHPUI : MonoBehaviour
         {
             GetComponent<PlayerHPUI>().Heal(10f);
         }
+    }
+
+    public void SetUpHpBar(PlayerParameter parameter)
+    {
+        _currentHP = parameter.GetMaxHp();
+        UpdateHP();
     }
 }

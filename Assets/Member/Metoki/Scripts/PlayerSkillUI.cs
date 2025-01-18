@@ -18,9 +18,11 @@ public class PlayerSkillUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        /*
         //èâä˙ê›íË
-        _currentHP = _maxHP;
+        _currentHP = GameManager.Instance.PlayerParameter.GetMaxHp();
         UpdateHP();
+        */
     }
 
     //ÉXÉLÉãílå∏è≠(âº)
@@ -41,15 +43,17 @@ public class PlayerSkillUI : MonoBehaviour
 
     private void UpdateHP()
     {
-        _hpUI.value = _currentHP / _maxHP;
+        _hpUI.value = _currentHP / GameManager.Instance.PlayerParameter.GetMaxHp();
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.S))
         {
             GetComponent<PlayerHPUI>().Damage(100f);
         }
+        */
     }
 }
