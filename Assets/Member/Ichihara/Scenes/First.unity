@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.446576, g: 0.4964136, b: 0.5748176, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657624, g: 0.49641395, b: 0.5748183, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerObject: {fileID: 559721336}
+  _moveCount: 0
 --- !u!1 &260633181
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,11 +317,11 @@ PrefabInstance:
       objectReference: {fileID: 862832586}
     - target: {fileID: 7178940251937600963, guid: 2c7c93bd8167d84458fcf3225c75bfc3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7810302409595424247, guid: 2c7c93bd8167d84458fcf3225c75bfc3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8736789606448966831, guid: 2c7c93bd8167d84458fcf3225c75bfc3, type: 3}
       propertyPath: m_AnchorMax.y
@@ -330,6 +331,26 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8906823953957540773, guid: 2c7c93bd8167d84458fcf3225c75bfc3, type: 3}
+      propertyPath: _hpUI
+      value: 
+      objectReference: {fileID: 516036367}
+    - target: {fileID: 8906823953957540773, guid: 2c7c93bd8167d84458fcf3225c75bfc3, type: 3}
+      propertyPath: _maxHP
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906823953957540773, guid: 2c7c93bd8167d84458fcf3225c75bfc3, type: 3}
+      propertyPath: _skillUI
+      value: 
+      objectReference: {fileID: 516036367}
+    - target: {fileID: 8906823953957540773, guid: 2c7c93bd8167d84458fcf3225c75bfc3, type: 3}
+      propertyPath: _maxSkill
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906823953957540773, guid: 2c7c93bd8167d84458fcf3225c75bfc3, type: 3}
+      propertyPath: _moveTest
+      value: 
+      objectReference: {fileID: 57599424}
     - target: {fileID: 9129757128116024035, guid: 2c7c93bd8167d84458fcf3225c75bfc3, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -415,6 +436,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c7c93bd8167d84458fcf3225c75bfc3, type: 3}
+--- !u!114 &516036367 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6774710678702591094, guid: 2c7c93bd8167d84458fcf3225c75bfc3, type: 3}
+  m_PrefabInstance: {fileID: 516036366}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &559721336
 GameObject:
   m_ObjectHideFlags: 0

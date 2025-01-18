@@ -22,7 +22,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         _playerMoveTest = _playerObject.GetComponent<PlayerMoveTest>();
         _playerParameter = _playerObject.GetComponentInChildren<PlayerParameter>();
         EnemyGenerater.Instance.GenerateEnemy();
-        PlayerHPUI.Instance.SetUpHpBar(_playerParameter);
+        //PlayerHPUI.Instance.SetUpHpBar(_playerParameter);
         PreUpdate().Forget();
     }
 
