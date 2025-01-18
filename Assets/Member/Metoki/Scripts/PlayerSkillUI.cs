@@ -23,14 +23,6 @@ public class PlayerSkillUI : MonoBehaviour
         UpdateHP();
     }
 
-    //スキル値減少(仮)
-    public void Damage(float damage)
-    {
-        _currentHP -= damage;
-        if (_currentHP < 0) _currentHP = 0;
-        UpdateHP();
-    }
-
     //スキル値増加(仮)
     public void Heal(float heal)
     {
@@ -47,9 +39,10 @@ public class PlayerSkillUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) && _moveTest._moveCount >= _maxSkill)
         {
-            GetComponent<PlayerSkillUI>().Damage(30);
+            _moveTest._moveCount = 0;
+            UpdateHP() ;
         }
         Heal(_moveTest._moveCount);
     }
