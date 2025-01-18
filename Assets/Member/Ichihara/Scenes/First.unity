@@ -345,7 +345,7 @@ PrefabInstance:
       objectReference: {fileID: 516036367}
     - target: {fileID: 8906823953957540773, guid: 2c7c93bd8167d84458fcf3225c75bfc3, type: 3}
       propertyPath: _maxSkill
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8906823953957540773, guid: 2c7c93bd8167d84458fcf3225c75bfc3, type: 3}
       propertyPath: _moveTest
