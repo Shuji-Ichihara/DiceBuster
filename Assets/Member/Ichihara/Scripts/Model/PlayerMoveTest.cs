@@ -10,6 +10,7 @@ public class PlayerMoveTest : MonoBehaviour
     [SerializeField]
     private GameObject _playerObject = null;
     private bool _isMoving;
+    public int _moveCount;
 
     private Transform _childTransform = null;
 
@@ -36,6 +37,7 @@ public class PlayerMoveTest : MonoBehaviour
             await MoveForwardPlayer(Vector3.forward);
             GameManager.Instance.PlayerParameter.Buff();
             GameManager.Instance.MoveCount--;
+            _moveCount++;
         }
         if (Input.GetKeyDown(KeyCode.S) && _isMoving == false)
         {
@@ -45,6 +47,7 @@ public class PlayerMoveTest : MonoBehaviour
             await MoveBackwardPlayer(Vector3.back);
             GameManager.Instance.PlayerParameter.Buff();
             GameManager.Instance.MoveCount--;
+            _moveCount++;
         }
         if (Input.GetKeyDown(KeyCode.A) && _isMoving == false)
         {
@@ -54,6 +57,7 @@ public class PlayerMoveTest : MonoBehaviour
             await MoveLefPlayer(Vector3.left);
             GameManager.Instance.PlayerParameter.Buff();
             GameManager.Instance.MoveCount--;
+            _moveCount++;
         }
         if (Input.GetKeyDown(KeyCode.D) && _isMoving == false)
         {
@@ -63,6 +67,7 @@ public class PlayerMoveTest : MonoBehaviour
             await MoveRightPlayer(Vector3.right);
             GameManager.Instance.PlayerParameter.Buff();
             GameManager.Instance.MoveCount--;
+            _moveCount++;
         }
     }
 

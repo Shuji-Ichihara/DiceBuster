@@ -7,19 +7,19 @@ public class PlayerSkillUI : MonoBehaviour
 {
     //スキルバー
     [SerializeField]
-    private Slider _hpUI;
+    private Slider _skillUI;
 
     //スキル(仮)
     [SerializeField]
-    private float _maxHP;
+    private float _maxSkill;
 
+    [SerializeField]
+    private PlayerMoveTest _moveTest;
     //現在のスキル
     private float _currentHP;
     // Start is called before the first frame update
     void Start()
     {
-        //初期設定
-        _currentHP = _maxHP;
         UpdateHP();
     }
 
@@ -34,22 +34,23 @@ public class PlayerSkillUI : MonoBehaviour
     //スキル値増加(仮)
     public void Heal(float heal)
     {
-        _currentHP += heal;
-        if (_currentHP > _maxHP) _currentHP = _maxHP;
+        _currentHP = heal;
+        if (_currentHP > _maxSkill) _currentHP = _maxSkill;
         UpdateHP();
     }
 
     private void UpdateHP()
     {
-        _hpUI.value = _currentHP / _maxHP;
+        _skillUI.value = _currentHP / _maxSkill;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            GetComponent<PlayerHPUI>().Damage(100f);
+            GetComponent<PlayerHPUI>().Damage(30);
         }
+        Heal(_moveTest._moveCount);
     }
 }
