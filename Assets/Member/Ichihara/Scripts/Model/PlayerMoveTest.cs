@@ -73,8 +73,12 @@ public class PlayerMoveTest : MonoBehaviour
         Ray ray = new Ray(_childTransform.position, vector);
         RaycastHit hit;
         bool check = Physics.Raycast(ray, out hit);
-        Debug.DrawRay(ray.origin, ray.direction, UnityEngine.Color.blue, 2f, false);
-        return check;
+        if (check)
+        {
+            float distance = Vector3.Distance(_childTransform.position, hit.transform.position);
+            if (distance > 5f && distance <= 15f) return check;
+        }
+        return false;
     }
 
     #region プレイヤーの移動関数
