@@ -17,7 +17,7 @@ public class PlayerMoveTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _playerObject.transform.position = FieldGenerater.Instance.GetGridPosition(0, 5);
+        //_playerObject.transform.position = FieldGenerater.Instance.GetGridPosition(0, 5);
         _childTransform = _playerObject.transform;
     }
 
