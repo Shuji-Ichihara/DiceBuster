@@ -37,7 +37,6 @@ public class PlayerMoveTest : MonoBehaviour
             await MoveForwardPlayer(Vector3.forward);
             GameManager.Instance.PlayerParameter.Buff();
             GameManager.Instance.MoveCount--;
-            _moveCount++;
         }
         if (Input.GetKeyDown(KeyCode.S) && _isMoving == false)
         {
@@ -47,7 +46,6 @@ public class PlayerMoveTest : MonoBehaviour
             await MoveBackwardPlayer(Vector3.back);
             GameManager.Instance.PlayerParameter.Buff();
             GameManager.Instance.MoveCount--;
-            _moveCount++;
         }
         if (Input.GetKeyDown(KeyCode.A) && _isMoving == false)
         {
@@ -57,7 +55,6 @@ public class PlayerMoveTest : MonoBehaviour
             await MoveLefPlayer(Vector3.left);
             GameManager.Instance.PlayerParameter.Buff();
             GameManager.Instance.MoveCount--;
-            _moveCount++;
         }
         if (Input.GetKeyDown(KeyCode.D) && _isMoving == false)
         {
@@ -67,7 +64,6 @@ public class PlayerMoveTest : MonoBehaviour
             await MoveRightPlayer(Vector3.right);
             GameManager.Instance.PlayerParameter.Buff();
             GameManager.Instance.MoveCount--;
-            _moveCount++;
         }
     }
 
@@ -106,6 +102,7 @@ public class PlayerMoveTest : MonoBehaviour
         }
         var floor = Mathf.Ceil(transform.position.z);
         transform.position = new Vector3(transform.position.x, transform.position.y, floor);
+        _moveCount++;
         _isMoving = false;
     }
 
@@ -128,6 +125,7 @@ public class PlayerMoveTest : MonoBehaviour
         }
         var floor = Mathf.Floor(transform.position.z);
         transform.position = new Vector3(transform.position.x, transform.position.y, floor);
+        _moveCount++;
         _isMoving = false;
     }
 
@@ -150,6 +148,7 @@ public class PlayerMoveTest : MonoBehaviour
         }
         var floor = Mathf.Floor(transform.position.x);
         transform.position = new Vector3(floor, transform.position.y, transform.position.z);
+        _moveCount++;
         _isMoving = false;
     }
 
@@ -172,6 +171,7 @@ public class PlayerMoveTest : MonoBehaviour
         }
         var floor = Mathf.Ceil(transform.position.x);
         transform.position = new Vector3(floor, transform.position.y, transform.position.z);
+        _moveCount++;
         _isMoving = false;
     }
     #endregion
