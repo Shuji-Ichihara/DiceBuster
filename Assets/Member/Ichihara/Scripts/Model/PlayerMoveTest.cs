@@ -27,7 +27,7 @@ public class PlayerMoveTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_moveCount <= 0)
+        if(_moveCount >= _moveCountCheck._DiceNum)
         {
             _moveCountCheck._movelock = true;
         }
@@ -35,13 +35,12 @@ public class PlayerMoveTest : MonoBehaviour
 
     public async UniTask MovePlayer()
     {
-        if (_moveCount > 0)
+        if (_moveCount < _moveCountCheck._DiceNum)
         {
             if (Input.GetKeyDown(KeyCode.W) && _isMoving == false)
             {
                 // 光線を飛ばす
                 if (ShootRayFromThePlayer(Vector3.forward) == true) return;
-                _moveCount--;
                 _isMoving = true;
                 await MoveForwardPlayer(Vector3.forward);
                 GameManager.Instance.PlayerParameter.Buff();
@@ -50,7 +49,6 @@ public class PlayerMoveTest : MonoBehaviour
             {
                 // 光線を飛ばす
                 if (ShootRayFromThePlayer(Vector3.back) == true) return;
-                _moveCount--;
                 _isMoving = true;
                 await MoveBackwardPlayer(Vector3.back);
                 GameManager.Instance.PlayerParameter.Buff();
@@ -59,7 +57,6 @@ public class PlayerMoveTest : MonoBehaviour
             {
                 // 光線を飛ばす
                 if (ShootRayFromThePlayer(Vector3.left) == true) return;
-                _moveCount--;
                 _isMoving = true;
                 await MoveLefPlayer(Vector3.left);
                 GameManager.Instance.PlayerParameter.Buff();
@@ -68,7 +65,6 @@ public class PlayerMoveTest : MonoBehaviour
             {
                 // 光線を飛ばす
                 if (ShootRayFromThePlayer(Vector3.right) == true) return;
-                _moveCount--;
                 _isMoving = true;
                 await MoveRightPlayer(Vector3.right);
                 GameManager.Instance.PlayerParameter.Buff();

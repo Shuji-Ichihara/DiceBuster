@@ -170,6 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerObject: {fileID: 559721336}
   _moveCount: 0
+  _skillmoveCount: 0
   _moveCountCheck: {fileID: 852374469}
 --- !u!1 &70481014
 GameObject:
@@ -411,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -1073,6 +1074,7 @@ MonoBehaviour:
   _btn: {fileID: 432645541}
   _playerMoveTest: {fileID: 57599424}
   _diceRollCount: 20
+  _DiceNum: 0
   _movelock: 0
 --- !u!114 &852374470
 MonoBehaviour:
