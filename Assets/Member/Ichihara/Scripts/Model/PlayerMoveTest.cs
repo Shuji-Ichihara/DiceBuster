@@ -10,13 +10,14 @@ public class PlayerMoveTest : MonoBehaviour
     [SerializeField]
     private GameObject _playerObject = null;
     private bool _isMoving;
+    public int _moveCount;
 
     private Transform _childTransform = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        _playerObject.transform.position = FieldGenerater.Instance.GetGridPosition(0, 5);
+        //_playerObject.transform.position = FieldGenerater.Instance.GetGridPosition(0, 5);
         _childTransform = _playerObject.transform;
     }
 
@@ -73,8 +74,12 @@ public class PlayerMoveTest : MonoBehaviour
         Ray ray = new Ray(_childTransform.position, vector);
         RaycastHit hit;
         bool check = Physics.Raycast(ray, out hit);
-        Debug.DrawRay(ray.origin, ray.direction, UnityEngine.Color.blue, 2f, false);
-        return check;
+        if (check)
+        {
+            float distance = Vector3.Distance(_childTransform.position, hit.transform.position);
+            if (distance > 5f && distance <= 15f) return check;
+        }
+        return false;
     }
 
     #region プレイヤーの移動関数
@@ -97,6 +102,7 @@ public class PlayerMoveTest : MonoBehaviour
         }
         var floor = Mathf.Ceil(transform.position.z);
         transform.position = new Vector3(transform.position.x, transform.position.y, floor);
+        _moveCount++;
         _isMoving = false;
     }
 
@@ -119,6 +125,7 @@ public class PlayerMoveTest : MonoBehaviour
         }
         var floor = Mathf.Floor(transform.position.z);
         transform.position = new Vector3(transform.position.x, transform.position.y, floor);
+        _moveCount++;
         _isMoving = false;
     }
 
@@ -141,6 +148,7 @@ public class PlayerMoveTest : MonoBehaviour
         }
         var floor = Mathf.Floor(transform.position.x);
         transform.position = new Vector3(floor, transform.position.y, transform.position.z);
+        _moveCount++;
         _isMoving = false;
     }
 
@@ -163,6 +171,7 @@ public class PlayerMoveTest : MonoBehaviour
         }
         var floor = Mathf.Ceil(transform.position.x);
         transform.position = new Vector3(floor, transform.position.y, transform.position.z);
+        _moveCount++;
         _isMoving = false;
     }
     #endregion

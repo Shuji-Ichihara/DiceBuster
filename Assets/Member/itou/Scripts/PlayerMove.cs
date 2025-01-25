@@ -46,6 +46,11 @@ public class PlayerMove : MonoBehaviour
                 StartCoroutine(Move());
             }
         }
+        if(_movecount == 0)
+        {
+            _movecount = Random.Range(1, 7);
+            _movecountmax = _movecount;
+        }
     }
 
     private IEnumerator Move()
