@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     public List<GameObject> _Buttons;
     public List<Button> _Button;
     public List<Text> _Texts;
+    private bool _move;
     //private Enemy _enemy;
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,18 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             StartCoroutine(Attacks());
+        }
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+        {
+            _move = true;
+        }
+        if (_move == true)
+        {
+            _move = false;
+            _Buttons[0].SetActive(false);
+            _Buttons[1].SetActive(false);
+            _Buttons[2].SetActive(false);
+            _Buttons[3].SetActive(false);
         }
     }
 
