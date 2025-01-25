@@ -1,56 +1,56 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // ƒXƒe[ƒ^ƒX
-    [SerializeField] int Health = 100; // ƒGƒlƒ~[‚Ì‘Ì—Í
-    [SerializeField] int AttackPower = 10; // ƒGƒlƒ~[‚ÌUŒ‚—Í
-    //ƒAƒjƒ[ƒVƒ‡ƒ“—p
+    // ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+    [SerializeField] int Health = 100; // ã‚¨ãƒãƒŸãƒ¼ã®ä½“åŠ›
+    [SerializeField] int AttackPower = 10; // ã‚¨ãƒãƒŸãƒ¼ã®æ”»æ’ƒåŠ›
+    //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç”¨
     [SerializeField] Animator animator;
 
-    private bool isAttacking = false; // UŒ‚’†ƒtƒ‰ƒO
+    private bool isAttacking = false; // æ”»æ’ƒä¸­ãƒ•ãƒ©ã‚°
 
     private void Start()
     {
     }
 
-    // UŒ‚‚³‚ê‚½
+    // æ”»æ’ƒã•ã‚ŒãŸ
     public void TakeDamage(int damage)
     {
-        // ƒ_ƒ[ƒW‚ğ‘Ì—Í‚©‚çŒ¸Z
+        // ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä½“åŠ›ã‹ã‚‰æ¸›ç®—
         Health -= damage;
 
-        // Œ»İ‚Ì‘Ì—Í‚ğƒƒO‚É•\¦
+        // ç¾åœ¨ã®ä½“åŠ›ã‚’ãƒ­ã‚°ã«è¡¨ç¤º
         Debug.Log("Enemy took damage: " + damage + ", Remaining health: " + Health);
 
-        // ‘Ì—Í‚ª0ˆÈ‰º‚É‚È‚Á‚½‚ç€–Sˆ—‚ğŒÄ‚Ño‚·
+        // ä½“åŠ›ãŒ0ä»¥ä¸‹ã«ãªã£ãŸã‚‰æ­»äº¡å‡¦ç†ã‚’å‘¼ã³å‡ºã™
         if (Health <= 0)
         {
             Die();
         }
     }
 
-    // €–S
+    // æ­»äº¡
     private void Die()
     {
-        // €–SƒƒO‚ğ•\¦
+        // æ­»äº¡ãƒ­ã‚°ã‚’è¡¨ç¤º
         Debug.Log("Enemy has died.");
 
-        Destroy(gameObject, 1f); // 1•bŒã‚Éíœ
+        Destroy(gameObject, 1f); // 1ç§’å¾Œã«å‰Šé™¤
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("ƒAƒ^ƒbƒNŠm”F");
+        Debug.Log("ã‚¢ã‚¿ãƒƒã‚¯ç¢ºèª");
 
         if (other.gameObject.tag == "Player") 
         {
-            // UŒ‚’†‚Å‚È‚¢ê‡‚Ì‚İÀs
+            // æ”»æ’ƒä¸­ã§ãªã„å ´åˆã®ã¿å®Ÿè¡Œ
             if (isAttacking) return;
 
-            // UŒ‚‚ğŠJn
+            // æ”»æ’ƒã‚’é–‹å§‹
             isAttacking = true;
 
             Player targetPlayer = other.GetComponent<Player>();
@@ -67,56 +67,56 @@ public class Enemy : MonoBehaviour
     }
 
     /*
-    // “G‚ğUŒ‚iƒ^[ƒQƒbƒg‚ğƒvƒŒƒCƒ„[‚É•ÏXj
+    // æ•µã‚’æ”»æ’ƒï¼ˆã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«å¤‰æ›´ï¼‰
     public void AttackTarget(GameObject target)
     {
-        // UŒ‚’†‚Å‚È‚¢ê‡‚Ì‚İÀs
+        // æ”»æ’ƒä¸­ã§ãªã„å ´åˆã®ã¿å®Ÿè¡Œ
         if (isAttacking) return;
 
-        // UŒ‚‚ğŠJn
+        // æ”»æ’ƒã‚’é–‹å§‹
         isAttacking = true;
 
-        // ƒ^[ƒQƒbƒg‚ÌPlayerƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾
+        // ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®Playerã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—
         Player targetPlayer = target.GetComponent<Player>();
 
-        // ƒ^[ƒQƒbƒg‚ªƒvƒŒƒCƒ„[‚Ìê‡
+        // ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãŒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆ
         if (targetPlayer != null)
         {
-            // UŒ‚ƒƒO‚ğ•\¦
+            // æ”»æ’ƒãƒ­ã‚°ã‚’è¡¨ç¤º
             Debug.Log("Attacking player with power: " + attackPower);
 
-            // UŒ‚ƒAƒjƒ[ƒVƒ‡ƒ“‚ğÄ¶
+            // æ”»æ’ƒã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿ
             if (animator != null)
             {
                 animator.SetTrigger("Attack");
             }
 
-            // ƒAƒjƒ[ƒVƒ‡ƒ“I—¹‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚éˆ—‚ğƒRƒ‹[ƒ`ƒ“‚ÅÀs
+            // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†æ™‚ã«ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸ãˆã‚‹å‡¦ç†ã‚’ã‚³ãƒ«ãƒ¼ãƒãƒ³ã§å®Ÿè¡Œ
             StartCoroutine(ApplyDamageAfterAnimation(targetPlayer));
         }
         else
         {
-            // ƒ^[ƒQƒbƒg‚ªƒvƒŒƒCƒ„[‚Å‚È‚¢ê‡‚ÌƒƒO‚ğ•\¦
+            // ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãŒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã§ãªã„å ´åˆã®ãƒ­ã‚°ã‚’è¡¨ç¤º
             Debug.Log("Target is not a player!");
-            isAttacking = false; // UŒ‚I—¹
+            isAttacking = false; // æ”»æ’ƒçµ‚äº†
         }
     }
     */
 
     /*
-    // ƒAƒjƒ[ƒVƒ‡ƒ“I—¹Œã‚Éƒ_ƒ[ƒW‚ğ“K—p‚·‚éƒRƒ‹[ƒ`ƒ“
+    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†å¾Œã«ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’é©ç”¨ã™ã‚‹ã‚³ãƒ«ãƒ¼ãƒãƒ³
     private System.Collections.IEnumerator ApplyDamageAfterAnimation(Player targetPlayer)
     {
-        // UŒ‚ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì’·‚³‚ğæ“¾iAnimator‚É"Attack"‚ÌÄ¶ŠÔ‚ª•K—vj
+        // æ”»æ’ƒã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®é•·ã•ã‚’å–å¾—ï¼ˆAnimatorã«"Attack"ã®å†ç”Ÿæ™‚é–“ãŒå¿…è¦ï¼‰
         float attackAnimationTime = animator.GetCurrentAnimatorStateInfo(0).length;
 
-        // ƒAƒjƒ[ƒVƒ‡ƒ“‚ªŠ®—¹‚·‚é‚Ü‚Å‘Ò‹@
+        // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒå®Œäº†ã™ã‚‹ã¾ã§å¾…æ©Ÿ
         yield return new WaitForSeconds(attackAnimationTime);
 
-        // ƒ^[ƒQƒbƒg‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚é
+        // ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸ãˆã‚‹
         targetPlayer.TakeDamage(attackPower);
 
-        // UŒ‚I—¹
+        // æ”»æ’ƒçµ‚äº†
         isAttacking = false;
     }
     */
