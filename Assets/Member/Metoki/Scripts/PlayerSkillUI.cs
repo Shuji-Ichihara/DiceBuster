@@ -21,7 +21,7 @@ public class PlayerSkillUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Heal(_moveTest._moveCount);
+        Heal(_moveTest._skillmoveCount);
     }
 
     //ƒXƒLƒ‹’l‘‰Á(‰¼)
@@ -35,15 +35,15 @@ public class PlayerSkillUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P) && _moveTest._moveCount >= _maxSkill && _skillCount == 0)
+        if (Input.GetKeyDown(KeyCode.P) && _moveTest._skillmoveCount >= _maxSkill && _skillCount == 0)
         {
-            _moveTest._moveCount = 0;
-            Heal(_moveTest._moveCount);
+            _moveTest._skillmoveCount = 0;
+            Heal(_moveTest._skillmoveCount);
             _skillCount++;
         }
         if(_skillCount == 0)
         {
-            Heal(_moveTest._moveCount);
+            Heal(_moveTest._skillmoveCount);
         }
     }
 }

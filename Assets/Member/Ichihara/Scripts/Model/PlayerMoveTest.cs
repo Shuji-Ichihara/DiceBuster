@@ -11,6 +11,9 @@ public class PlayerMoveTest : MonoBehaviour
     private GameObject _playerObject = null;
     private bool _isMoving;
     public int _moveCount;
+    public int _skillmoveCount;
+    [SerializeField]
+    private MoveCountCheck _moveCountCheck;
 
     private Transform _childTransform = null;
 
@@ -24,46 +27,52 @@ public class PlayerMoveTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(_moveCount <= 0)
+        {
+            _moveCountCheck._movelock = true;
+        }
     }
 
     public async UniTask MovePlayer()
     {
-        if (Input.GetKeyDown(KeyCode.W) && _isMoving == false)
+        if (_moveCount > 0)
         {
-            // 光線を飛ばす
-            if (ShootRayFromThePlayer(Vector3.forward) == true) return;
-            _isMoving = true;
-            await MoveForwardPlayer(Vector3.forward);
-            GameManager.Instance.PlayerParameter.Buff();
-            GameManager.Instance.MoveCount--;
-        }
-        if (Input.GetKeyDown(KeyCode.S) && _isMoving == false)
-        {
-            // 光線を飛ばす
-            if (ShootRayFromThePlayer(Vector3.back) == true) return;
-            _isMoving = true;
-            await MoveBackwardPlayer(Vector3.back);
-            GameManager.Instance.PlayerParameter.Buff();
-            GameManager.Instance.MoveCount--;
-        }
-        if (Input.GetKeyDown(KeyCode.A) && _isMoving == false)
-        {
-            // 光線を飛ばす
-            if (ShootRayFromThePlayer(Vector3.left) == true) return;
-            _isMoving = true;
-            await MoveLefPlayer(Vector3.left);
-            GameManager.Instance.PlayerParameter.Buff();
-            GameManager.Instance.MoveCount--;
-        }
-        if (Input.GetKeyDown(KeyCode.D) && _isMoving == false)
-        {
-            // 光線を飛ばす
-            if (ShootRayFromThePlayer(Vector3.right) == true) return;
-            _isMoving = true;
-            await MoveRightPlayer(Vector3.right);
-            GameManager.Instance.PlayerParameter.Buff();
-            GameManager.Instance.MoveCount--;
+            if (Input.GetKeyDown(KeyCode.W) && _isMoving == false)
+            {
+                // 光線を飛ばす
+                if (ShootRayFromThePlayer(Vector3.forward) == true) return;
+                _moveCount--;
+                _isMoving = true;
+                await MoveForwardPlayer(Vector3.forward);
+                GameManager.Instance.PlayerParameter.Buff();
+            }
+            if (Input.GetKeyDown(KeyCode.S) && _isMoving == false)
+            {
+                // 光線を飛ばす
+                if (ShootRayFromThePlayer(Vector3.back) == true) return;
+                _moveCount--;
+                _isMoving = true;
+                await MoveBackwardPlayer(Vector3.back);
+                GameManager.Instance.PlayerParameter.Buff();
+            }
+            if (Input.GetKeyDown(KeyCode.A) && _isMoving == false)
+            {
+                // 光線を飛ばす
+                if (ShootRayFromThePlayer(Vector3.left) == true) return;
+                _moveCount--;
+                _isMoving = true;
+                await MoveLefPlayer(Vector3.left);
+                GameManager.Instance.PlayerParameter.Buff();
+            }
+            if (Input.GetKeyDown(KeyCode.D) && _isMoving == false)
+            {
+                // 光線を飛ばす
+                if (ShootRayFromThePlayer(Vector3.right) == true) return;
+                _moveCount--;
+                _isMoving = true;
+                await MoveRightPlayer(Vector3.right);
+                GameManager.Instance.PlayerParameter.Buff();
+            }
         }
     }
 
