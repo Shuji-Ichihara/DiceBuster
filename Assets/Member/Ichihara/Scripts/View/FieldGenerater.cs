@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class FieldGenerater : SingletonMonoBehaviour<FieldGenerater>
@@ -8,7 +9,9 @@ public class FieldGenerater : SingletonMonoBehaviour<FieldGenerater>
     // 
     [SerializeField]
     private FieldStatus _field = null;
+    public int FieldWidth => _fieldWidth;
     private int _fieldWidth = 9;
+    public int FieldHeight => _fieldHeight;
     private int _fieldHeight = 6;
     private GameObject[,] _fieldGrid;
     // 
