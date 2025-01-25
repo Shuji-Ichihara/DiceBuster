@@ -5,30 +5,28 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     // ステータス
-    public int health = 100; // エネミーの体力
-    public int attackPower = 10; // エネミーの攻撃力
+    [SerializeField] int Health = 100; // エネミーの体力
+    [SerializeField] int AttackPower = 10; // エネミーの攻撃力
+    //アニメーション用
+    [SerializeField] Animator animator;
 
-    // アニメーション用
-    private Animator animator;
     private bool isAttacking = false; // 攻撃中フラグ
 
     private void Start()
     {
-        // Animatorコンポーネントを取得
-        animator = GetComponent<Animator>();
     }
 
-    // 攻撃
+    // 攻撃された
     public void TakeDamage(int damage)
     {
         // ダメージを体力から減算
-        health -= damage;
+        Health -= damage;
 
         // 現在の体力をログに表示
-        Debug.Log("Enemy took damage: " + damage + ", Remaining health: " + health);
+        Debug.Log("Enemy took damage: " + damage + ", Remaining health: " + Health);
 
         // 体力が0以下になったら死亡処理を呼び出す
-        if (health <= 0)
+        if (Health <= 0)
         {
             Die();
         }
@@ -43,6 +41,32 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject, 1f); // 1秒後に削除
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("アタック確認");
+
+        if (other.gameObject.tag == "Player") 
+        {
+            // 攻撃中でない場合のみ実行
+            if (isAttacking) return;
+
+            // 攻撃を開始
+            isAttacking = true;
+
+            Player targetPlayer = other.GetComponent<Player>();
+
+            targetPlayer.TakeDamage(AttackPower);
+
+            animator.SetTrigger("Attack");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        isAttacking = false;
+    }
+
+    /*
     // 敵を攻撃（ターゲットをプレイヤーに変更）
     public void AttackTarget(GameObject target)
     {
@@ -77,7 +101,9 @@ public class Enemy : MonoBehaviour
             isAttacking = false; // 攻撃終了
         }
     }
+    */
 
+    /*
     // アニメーション終了後にダメージを適用するコルーチン
     private System.Collections.IEnumerator ApplyDamageAfterAnimation(Player targetPlayer)
     {
@@ -93,4 +119,5 @@ public class Enemy : MonoBehaviour
         // 攻撃終了
         isAttacking = false;
     }
+    */
 }
