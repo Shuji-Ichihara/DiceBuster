@@ -56,7 +56,7 @@ public class PlayerParameter : MonoBehaviour
         var fieldInfo = FieldGenerater.Instance.GetFieldInfoInGrid(transform.position);
         if (fieldInfo == null) return null;
         var fieldList = new List<Transform>();
-        Transform? dummTransform = null;
+        Transform dummyTransform = null;
         Vector3 fieldInfoPosition = fieldInfo.transform.position;
         float fieldSideLength = 10f;
         for (int i = 0; i < 4; i++)
@@ -65,23 +65,30 @@ public class PlayerParameter : MonoBehaviour
             {
                 case 0:
                     Vector3 dummyforwardFieldInfo = fieldInfoPosition + Vector3.forward * fieldSideLength;
-                    dummTransform = FieldGenerater.Instance.GetFieldInfoInGrid(dummyforwardFieldInfo)?.transform;
-
+                    // 一番上の行にプレイヤーがいる場合、上側のマスが存在しない為処理をスキップ
+                    if (dummyforwardFieldInfo.z > 10f * (FieldGenerater.Instance.FieldHeight - 1)) continue;
+                    dummyTransform = FieldGenerater.Instance.GetFieldInfoInGrid(dummyforwardFieldInfo).transform;
                     break;
                 case 1:
                     Vector3 dummyrightFieldInfo = fieldInfoPosition + Vector3.right * fieldSideLength;
-                    dummTransform = FieldGenerater.Instance.GetFieldInfoInGrid(dummyrightFieldInfo)?.transform;
+                    // 一番右の列にプレイヤーがいる場合、右側のマスが存在しない為処理をスキップ
+                    if (dummyrightFieldInfo.x > 10f * (FieldGenerater.Instance.FieldWidth - 1)) continue;
+                    dummyTransform = FieldGenerater.Instance.GetFieldInfoInGrid(dummyrightFieldInfo).transform;
                     break;
                 case 2:
                     Vector3 dummybackwardFieldInfo = fieldInfoPosition + Vector3.back * fieldSideLength;
-                    dummTransform = FieldGenerater.Instance.GetFieldInfoInGrid(dummybackwardFieldInfo)?.transform;
+                    // 一番下の行にプレイヤーがいる場合、下側のマスが存在しない為処理をスキップ
+                    if (dummybackwardFieldInfo.z < 0f) continue;
+                    dummyTransform = FieldGenerater.Instance.GetFieldInfoInGrid(dummybackwardFieldInfo).transform;
                     break;
                 case 3:
                     Vector3 dummyleftFieldInfo = fieldInfoPosition + Vector3.left * fieldSideLength;
-                    dummTransform = FieldGenerater.Instance.GetFieldInfoInGrid(dummyleftFieldInfo)?.transform;
+                    // 一番左の列にプレイヤーがいる場合、左側のマスが存在しない為処理をスキップ
+                    if (dummyleftFieldInfo.x < 0f) continue;
+                    dummyTransform = FieldGenerater.Instance.GetFieldInfoInGrid(dummyleftFieldInfo).transform;
                     break;
             }
-            if (dummTransform != null) fieldList.Add(dummTransform);
+            if (dummyTransform != null) fieldList.Add(dummyTransform);
         }
         return fieldList;
     }
