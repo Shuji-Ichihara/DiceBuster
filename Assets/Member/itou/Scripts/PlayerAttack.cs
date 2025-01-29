@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     public List<GameObject> _Buttons;
     public List<Button> _Button;
     public List<Text> _Texts;
+    public int _movecounttext;
     private bool _move;
     //private Enemy _enemy;
     // Start is called before the first frame update
@@ -30,7 +31,12 @@ public class PlayerAttack : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
         {
-            _move = true;
+            if(_movecounttext != 0)
+            {
+                _move = true;
+                _movecounttext--;
+                _Texts[3].text = "Ç†Ç∆" + _movecounttext + "É}ÉX";
+            }
         }
         if (_move == true)
         {

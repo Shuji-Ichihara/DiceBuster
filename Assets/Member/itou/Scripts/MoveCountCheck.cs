@@ -7,6 +7,7 @@ public class MoveCountCheck : MonoBehaviour
     [SerializeField] private Sprite[] _diceSprite;
     [SerializeField] private Button _btn;
     [SerializeField] private PlayerMoveTest _playerMoveTest;
+    [SerializeField] private PlayerAttack _playerAttack;
     private Image _rend;
     public int _diceRollCount = 20;
     private int _spriteNum = 0;
@@ -37,6 +38,8 @@ public class MoveCountCheck : MonoBehaviour
             yield return new WaitForSeconds(0.02f);
         }
         _DiceNum =_spriteNum + 1;
+        _playerAttack._movecounttext = _DiceNum;
+        _playerAttack._Texts[3].text = "Ç†Ç∆" + _DiceNum + "É}ÉX";
         _btn.interactable = true;
     }
     /*
