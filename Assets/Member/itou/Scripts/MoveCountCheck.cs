@@ -30,6 +30,7 @@ public class MoveCountCheck : MonoBehaviour
     }
     private IEnumerator LoadDice()
     {
+        _playerAttack.attack = false;
         _btn.interactable = false;
         for (int i = 0; i <= _diceRollCount; i++)
         {
