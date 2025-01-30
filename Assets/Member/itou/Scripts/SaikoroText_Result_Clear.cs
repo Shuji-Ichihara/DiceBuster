@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SaikoroText_Result_SaikoroText_Result_Clear : MonoBehaviour
+public class SaikoroText_Result_Clear : MonoBehaviour
 {
     [SerializeField]
     private GameObject dice;
@@ -30,6 +30,9 @@ public class SaikoroText_Result_SaikoroText_Result_Clear : MonoBehaviour
     private List<GameObject> _nazo;
 
     public bool mini;
+
+    //このboolが演出が終わった後にtrueになるのでこれを使ってください
+    public bool Buttonclickok = false;
 
     void Start()
     {
@@ -132,5 +135,6 @@ public class SaikoroText_Result_SaikoroText_Result_Clear : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
         Instantiate(hanabi, _nazo[4].transform.position, Quaternion.identity);
         yield return new WaitForSeconds(0.3f);
+        Buttonclickok = true;
     }
 }
