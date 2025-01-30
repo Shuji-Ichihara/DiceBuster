@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class FieldGenerater : SingletonMonoBehaviour<FieldGenerater>
@@ -58,6 +56,21 @@ public class FieldGenerater : SingletonMonoBehaviour<FieldGenerater>
         }
     }
 
+
+    public void ChangeField(Vector3 playerPosition)
+    {
+        GameObject obj = GetFieldInfoInGrid(playerPosition);
+        // マスを書き換える処理
+        // _randomCurveから乱数を抽出
+        float seed = _randomCurve.Evaluate(Random.value);
+        int randomNum = (int)(seed * 100);
+        randomNum %= _fieldDataInfo.FieldDataList.Count;
+        // 読み込んだマス効果の情報を生成したマスに渡す
+        var nextField = obj.GetComponent<FieldStatus>();
+        nextField.SetFieldStatus(_fieldDataInfo.FieldDataList[randomNum], _fieldMaterials[randomNum]);
+        obj = nextField.gameObject;
+    }
+
     public float GetGridWidthMax()
     {
         return _fieldGrid[_fieldHeight - 1, _fieldWidth - 1].transform.position.x;
@@ -92,10 +105,10 @@ public class FieldGenerater : SingletonMonoBehaviour<FieldGenerater>
             for (int width = 0; width < _fieldWidth; width++)
             {
                 var fieldObj = _fieldGrid[height, width];
-                if(fieldObj.transform.position.x ==  floorPosition.x
-                    && fieldObj.transform.position.z == floorPosition.z) 
+                if (fieldObj.transform.position.x == floorPosition.x
+                    && fieldObj.transform.position.z == floorPosition.z)
                 {
-                    obj = fieldObj; 
+                    obj = fieldObj;
                     break;
                 }
             }
