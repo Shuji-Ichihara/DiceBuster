@@ -112,6 +112,7 @@ public class PlayerMoveTest : MonoBehaviour
         var floor = Mathf.Ceil(transform.position.z);
         transform.position = new Vector3(transform.position.x, transform.position.y, floor);
         _moveCount++;
+        FieldGenerater.Instance.ChangeField(transform.position);
         _isMoving = false;
     }
 
@@ -135,6 +136,7 @@ public class PlayerMoveTest : MonoBehaviour
         var floor = Mathf.Floor(transform.position.z);
         transform.position = new Vector3(transform.position.x, transform.position.y, floor);
         _moveCount++;
+        FieldGenerater.Instance.ChangeField(transform.position);
         _isMoving = false;
     }
 
@@ -158,6 +160,7 @@ public class PlayerMoveTest : MonoBehaviour
         var floor = Mathf.Floor(transform.position.x);
         transform.position = new Vector3(floor, transform.position.y, transform.position.z);
         _moveCount++;
+        FieldGenerater.Instance.ChangeField(transform.position);
         _isMoving = false;
     }
 
@@ -181,6 +184,7 @@ public class PlayerMoveTest : MonoBehaviour
         var floor = Mathf.Ceil(transform.position.x);
         transform.position = new Vector3(floor, transform.position.y, transform.position.z);
         _moveCount++;
+        FieldGenerater.Instance.ChangeField(transform.position);
         _isMoving = false;
     }
     #endregion
