@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Member/Ichihara/Scenes/First.unity
     guid: 0734a7622e7c57e42a7df3d90c8dc0d6
+  - enabled: 1
+    path: Assets/Member/itou/Result_Clear.unity
+    guid: 9c62b6245f4556e4381e581484fe8a4f
+  - enabled: 1
+    path: Assets/Member/itou/Result_miss.unity
+    guid: f28b9f2385fe67a418df698b8ab476ba
   m_configObjects: {}

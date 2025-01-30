@@ -37,8 +37,6 @@ public class PlayerAttack : MonoBehaviour
             if(_movecounttext != 0)
             {
                 _move = true;
-                _movecounttext--;
-                _Texts[3].text = "Ç†Ç∆" + _movecounttext + "É}ÉX";
             }
         }
         if (_move == true)

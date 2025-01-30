@@ -14,6 +14,8 @@ public class PlayerMoveTest : MonoBehaviour
     public int _skillmoveCount;
     [SerializeField]
     private MoveCountCheck _moveCountCheck;
+    [SerializeField]
+    private PlayerAttack _playerAttack;
 
     private Transform _childTransform = null;
 
@@ -42,6 +44,9 @@ public class PlayerMoveTest : MonoBehaviour
                 // 光線を飛ばす
                 if (ShootRayFromThePlayer(Vector3.forward) == true) return;
                 _isMoving = true;
+                _skillmoveCount++;
+                _playerAttack._movecounttext--;
+                _playerAttack._Texts[3].text = "あと" + _playerAttack._movecounttext + "マス";
                 await MoveForwardPlayer(Vector3.forward);
                 GameManager.Instance.PlayerParameter.Buff();
             }
@@ -50,6 +55,9 @@ public class PlayerMoveTest : MonoBehaviour
                 // 光線を飛ばす
                 if (ShootRayFromThePlayer(Vector3.back) == true) return;
                 _isMoving = true;
+                _skillmoveCount++;
+                _playerAttack._movecounttext--;
+                _playerAttack._Texts[3].text = "あと" + _playerAttack._movecounttext + "マス";
                 await MoveBackwardPlayer(Vector3.back);
                 GameManager.Instance.PlayerParameter.Buff();
             }
@@ -58,6 +66,9 @@ public class PlayerMoveTest : MonoBehaviour
                 // 光線を飛ばす
                 if (ShootRayFromThePlayer(Vector3.left) == true) return;
                 _isMoving = true;
+                _skillmoveCount++;
+                _playerAttack._movecounttext--;
+                _playerAttack._Texts[3].text = "あと" + _playerAttack._movecounttext + "マス";
                 await MoveLefPlayer(Vector3.left);
                 GameManager.Instance.PlayerParameter.Buff();
             }
@@ -66,6 +77,9 @@ public class PlayerMoveTest : MonoBehaviour
                 // 光線を飛ばす
                 if (ShootRayFromThePlayer(Vector3.right) == true) return;
                 _isMoving = true;
+                _skillmoveCount++;
+                _playerAttack._movecounttext--;
+                _playerAttack._Texts[3].text = "あと" + _playerAttack._movecounttext + "マス";
                 await MoveRightPlayer(Vector3.right);
                 GameManager.Instance.PlayerParameter.Buff();
             }
