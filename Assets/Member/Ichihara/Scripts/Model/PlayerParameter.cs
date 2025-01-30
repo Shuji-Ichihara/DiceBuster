@@ -13,6 +13,8 @@ public class PlayerParameter : MonoBehaviour
     private int _baseAttackPower = 10;
     [System.NonSerialized]
     public int AttackPower = 0;
+    [SerializeField]
+    private PlayerHPUI _playerHPUI;
 
     private void Start()
     {
@@ -111,7 +113,7 @@ public class PlayerParameter : MonoBehaviour
     {
         // ダメージを体力から減算
         Hp -= damage;
-
+        _playerHPUI.UpdateHP();
         // ログを表示
         Debug.Log("ダメージ量: " + damage + ", 残りHP: " + Hp);
 
