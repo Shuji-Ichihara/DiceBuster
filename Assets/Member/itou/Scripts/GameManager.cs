@@ -53,7 +53,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         MoveCount = RandomMoveCount();
         while (MoveCount > 0)
         {
-            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+            await UniTask.Yield(PlayerLoopTiming.Update);
             await _playerMoveTest.MovePlayer();
         }
         await UniTask.Yield();
