@@ -42,6 +42,7 @@ public class PlayerMoveTest : MonoBehaviour
                 // 光線を飛ばす
                 if (ShootRayFromThePlayer(Vector3.forward) == true) return;
                 _isMoving = true;
+                _skillmoveCount++;
                 await MoveForwardPlayer(Vector3.forward);
                 GameManager.Instance.PlayerParameter.Buff();
             }
@@ -50,6 +51,7 @@ public class PlayerMoveTest : MonoBehaviour
                 // 光線を飛ばす
                 if (ShootRayFromThePlayer(Vector3.back) == true) return;
                 _isMoving = true;
+                _skillmoveCount++;
                 await MoveBackwardPlayer(Vector3.back);
                 GameManager.Instance.PlayerParameter.Buff();
             }
@@ -58,6 +60,7 @@ public class PlayerMoveTest : MonoBehaviour
                 // 光線を飛ばす
                 if (ShootRayFromThePlayer(Vector3.left) == true) return;
                 _isMoving = true;
+                _skillmoveCount++;
                 await MoveLefPlayer(Vector3.left);
                 GameManager.Instance.PlayerParameter.Buff();
             }
@@ -66,6 +69,7 @@ public class PlayerMoveTest : MonoBehaviour
                 // 光線を飛ばす
                 if (ShootRayFromThePlayer(Vector3.right) == true) return;
                 _isMoving = true;
+                _skillmoveCount++;
                 await MoveRightPlayer(Vector3.right);
                 GameManager.Instance.PlayerParameter.Buff();
             }
