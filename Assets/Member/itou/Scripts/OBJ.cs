@@ -7,6 +7,9 @@ public class OBJ : MonoBehaviour
     [SerializeField]
     private SaikoroText_Result_Miss _Result_Miss;
     float s;
+
+    //‚±‚Ìbool‚ª‰‰o‚ªI‚í‚Á‚½Œã‚Étrue‚É‚È‚é‚Ì‚Å‚±‚ê‚ğg‚Á‚Ä‚­‚¾‚³‚¢
+    public bool Buttonclickok = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +37,6 @@ public class OBJ : MonoBehaviour
             this.transform.localScale = new Vector3(s, 2, 1);
             yield return new WaitForSeconds(0.1f);
         }
-        Destroy(this.gameObject);
+        Buttonclickok = true;
     }
 }
