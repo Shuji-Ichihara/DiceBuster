@@ -30,7 +30,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         while (GameClear == false)
         {
-            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+            await UniTask.Yield(PlayerLoopTiming.Update);
             await PlayerTurn();
         }
     }
