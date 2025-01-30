@@ -543,6 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e69b5bf1428394689b3494f16ce378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerParameter: {fileID: 559721343}
   _Enemys: []
   _Buttons:
   - {fileID: 1507549886}

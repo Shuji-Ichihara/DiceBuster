@@ -864,7 +864,7 @@ GameObject:
   - component: {fileID: 1832427317405137211}
   m_Layer: 0
   m_Name: TurtleShellPBR
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -919,8 +919,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef051a9ed6449304a9b2206c2a2e2591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
-  attackPower: 20
+  Health: 100
+  AttackPower: 10
+  animator: {fileID: 0}
 --- !u!65 &1832427317405137211
 BoxCollider:
   m_ObjectHideFlags: 0

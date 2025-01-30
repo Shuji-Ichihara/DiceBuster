@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
 {
+    [SerializeField]
+    private PlayerParameter _playerParameter;
     public List<GameObject> _Enemys;
     public List<GameObject> _Buttons;
     public List<Button> _Button;
     public List<Text> _Texts;
     public int _movecounttext;
     private bool _move;
-    //private Enemy _enemy;
+    private Enemy _enemy;
+    private int attackcount;
     // Start is called before the first frame update
     void Start()
     {
@@ -72,31 +75,43 @@ public class PlayerAttack : MonoBehaviour
 
     public void Enemy1()
     {
-        //_enemy = _Enemys[0].gameObject.GetComponent<Enemy>();
-        //_enemy._Hp -= 10;
-        Debug.Log("a");
-        _Buttons[0].SetActive(false);
-        _Buttons[1].SetActive(false);
-        _Buttons[2].SetActive(false);
-        _Buttons[3].SetActive(false);
+        if(attackcount == 0)
+        {
+            attackcount++;
+            _enemy = _Enemys[0].gameObject.GetComponent<Enemy>();
+            _enemy.TakeDamage(_playerParameter.AttackPower);
+            Debug.Log("a");
+            _Buttons[0].SetActive(false);
+            _Buttons[1].SetActive(false);
+            _Buttons[2].SetActive(false);
+            _Buttons[3].SetActive(false);
+        }
     }
     public void Enemy2()
     {
-        //_enemy = _Enemys[1].gameObject.GetComponent<Enemy>();
-        //_enemy._Hp -= 10;
-        _Buttons[0].SetActive(false);
-        _Buttons[1].SetActive(false);
-        _Buttons[2].SetActive(false);
-        _Buttons[3].SetActive(false);
+        if (attackcount == 0)
+        {
+            attackcount++;
+            _enemy = _Enemys[1].gameObject.GetComponent<Enemy>();
+            _enemy.TakeDamage(_playerParameter.AttackPower);
+            _Buttons[0].SetActive(false);
+            _Buttons[1].SetActive(false);
+            _Buttons[2].SetActive(false);
+            _Buttons[3].SetActive(false);
+        }
     }
     public void Enemy3()
     {
-        //_enemy = _Enemys[2].gameObject.GetComponent<Enemy>();
-        //_enemy._Hp -= 10;
-        _Buttons[0].SetActive(false);
-        _Buttons[1].SetActive(false);
-        _Buttons[2].SetActive(false);
-        _Buttons[3].SetActive(false);
+        if (attackcount == 0)
+        {
+            attackcount++;
+            _enemy = _Enemys[2].gameObject.GetComponent<Enemy>();
+            _enemy.TakeDamage(_playerParameter.AttackPower);
+            _Buttons[0].SetActive(false);
+            _Buttons[1].SetActive(false);
+            _Buttons[2].SetActive(false);
+            _Buttons[3].SetActive(false);
+        }
     }
 
     public void Return()
@@ -109,6 +124,7 @@ public class PlayerAttack : MonoBehaviour
 
     IEnumerator Attacks()
     {
+        attackcount = 0;
         _Buttons[0].SetActive(true);
         yield return new WaitForSeconds(0.1f);
         if (_Enemys[0] != null)
