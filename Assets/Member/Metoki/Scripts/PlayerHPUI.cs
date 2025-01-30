@@ -20,8 +20,8 @@ public class PlayerHPUI : SingletonMonoBehaviour<PlayerHPUI>
     void Start()
     {
         //‰Šúİ’è
-        //_currentHP = GameManager.Instance.PlayerParameter.GetMaxHp();
-        //UpdateHP();
+        _currentHP = GameManager.Instance.PlayerParameter.GetMaxHp();
+        UpdateHP();
     }
 
     //HPŒ¸­(‰¼)
