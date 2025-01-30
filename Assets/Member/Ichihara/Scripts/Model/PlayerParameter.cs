@@ -106,4 +106,24 @@ public class PlayerParameter : MonoBehaviour
     {
         return _maxHp;
     }
+
+    public void TakeDamage(int damage)
+    {
+        // ダメージを体力から減算
+        Hp -= damage;
+
+        // ログを表示
+        Debug.Log("ダメージ量: " + damage + ", 残りHP: " + Hp);
+
+        // 体力が0以下になったらゲームオーバー処理を実行
+        if (Hp <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Destroy(this.gameObject);
+    }
 }

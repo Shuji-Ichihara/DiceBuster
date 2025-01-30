@@ -7,9 +7,11 @@ public class MoveCountCheck : MonoBehaviour
     [SerializeField] private Sprite[] _diceSprite;
     [SerializeField] private Button _btn;
     [SerializeField] private PlayerMoveTest _playerMoveTest;
+    [SerializeField] private PlayerAttack _playerAttack;
     private Image _rend;
     public int _diceRollCount = 20;
     private int _spriteNum = 0;
+    public int _DiceNum = 0;
     public bool _movelock;
     void Start()
     {
@@ -20,13 +22,14 @@ public class MoveCountCheck : MonoBehaviour
     {
         if (_movelock)
         {
+            _playerMoveTest._moveCount = 0;
+            _movelock = false;
             StartCoroutine(LoadDice());
             //LoadDice();
         }
     }
     private IEnumerator LoadDice()
     {
-        _movelock = false;
         _btn.interactable = false;
         for (int i = 0; i <= _diceRollCount; i++)
         {
@@ -34,7 +37,9 @@ public class MoveCountCheck : MonoBehaviour
             _rend.sprite = _diceSprite[_spriteNum];
             yield return new WaitForSeconds(0.02f);
         }
-        _playerMoveTest._moveCount =_spriteNum + 1;
+        _DiceNum =_spriteNum + 1;
+        _playerAttack._movecounttext = _DiceNum;
+        _playerAttack._Texts[3].text = "‚ ‚Æ" + _DiceNum + "ƒ}ƒX";
         _btn.interactable = true;
     }
     /*

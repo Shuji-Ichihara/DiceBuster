@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: -6593407071711316140}
   m_Layer: 0
   m_Name: SlimePolyart
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,8 +230,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef051a9ed6449304a9b2206c2a2e2591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 70
-  attackPower: 5
+  Health: 100
+  AttackPower: 10
+  animator: {fileID: 0}
 --- !u!65 &-6593407071711316140
 BoxCollider:
   m_ObjectHideFlags: 0

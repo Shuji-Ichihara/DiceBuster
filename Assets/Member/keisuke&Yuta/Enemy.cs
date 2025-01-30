@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
             // 攻撃を開始
             isAttacking = true;
 
-            Player targetPlayer = other.GetComponent<Player>();
+            PlayerParameter targetPlayer = other.GetComponent<PlayerParameter>();
 
             targetPlayer.TakeDamage(AttackPower);
 
