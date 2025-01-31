@@ -9,16 +9,19 @@ public class MoveCountCheck : MonoBehaviour
     [SerializeField] private Button _btn;
     [SerializeField] private PlayerMoveTest _playerMoveTest;
     [SerializeField] private PlayerAttack _playerAttack;
+    [SerializeField] private DiceIconFadeOut _DiceIconFadeOut;
     private Image _rend;
     public int _diceRollCount = 20;
     private int _spriteNum = 0;
     public int _DiceNum = 0;
     public bool _movelock;
+    public bool _gameStart;
     [SerializeField]
     private List<GameObject> _EnemyAttack;
     void Start()
     {
         _movelock = true;
+        _gameStart = false;
         _rend = this.GetComponent<Image>();
     }
     public void RollingDice()
@@ -28,6 +31,7 @@ public class MoveCountCheck : MonoBehaviour
         {
             _playerMoveTest._moveCount = 0;
             _movelock = false;
+            _gameStart = true;
             if(_EnemyAttack.Count == 0)
             {
                 _EnemyAttack.Add(GameObject.Find("EnemyAttackColider1"));
@@ -54,7 +58,16 @@ public class MoveCountCheck : MonoBehaviour
         _DiceNum =_spriteNum + 1;
         _playerAttack._movecounttext = _DiceNum;
         _playerAttack._Texts[3].text = "Ç†Ç∆" + _DiceNum + "É}ÉX";
+        _DiceIconFadeOut.MoveUI();
         _btn.interactable = true;
+    }
+
+    public void EnemyturnAttack()
+    {
+        _DiceIconFadeOut.ReturnUI();
+        _EnemyAttack[0].SetActive(true);
+        _EnemyAttack[1].SetActive(true);
+        _EnemyAttack[2].SetActive(true);
     }
     /*
     private void LoadDice()

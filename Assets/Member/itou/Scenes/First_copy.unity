@@ -393,6 +393,7 @@ GameObject:
   - component: {fileID: 432645543}
   - component: {fileID: 432645542}
   - component: {fileID: 432645541}
+  - component: {fileID: 432645545}
   m_Layer: 5
   m_Name: DiceThrowUI
   m_TagString: Untagged
@@ -513,6 +514,20 @@ RectTransform:
   m_AnchoredPosition: {x: 700, y: -293}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &432645545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432645540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80804f7788e4fdb44b174d94d2db8c55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDistance: 400
+  moveDuration: 0.3
 --- !u!1 &543364433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,9 +1095,11 @@ MonoBehaviour:
   _btn: {fileID: 432645541}
   _playerMoveTest: {fileID: 57599424}
   _playerAttack: {fileID: 543364434}
+  _DiceIconFadeOut: {fileID: 432645545}
   _diceRollCount: 20
   _DiceNum: 0
   _movelock: 0
+  _EnemyAttack: []
 --- !u!114 &852374470
 MonoBehaviour:
   m_ObjectHideFlags: 0

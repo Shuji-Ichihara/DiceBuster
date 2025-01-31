@@ -29,9 +29,10 @@ public class PlayerMoveTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_moveCount >= _moveCountCheck._DiceNum)
+        if(_moveCount >= _moveCountCheck._DiceNum && _moveCountCheck._gameStart)
         {
             _moveCountCheck._movelock = true;
+            _moveCountCheck.EnemyturnAttack();
         }
     }
 
