@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,8 @@ public class MoveCountCheck : MonoBehaviour
     private int _spriteNum = 0;
     public int _DiceNum = 0;
     public bool _movelock;
+    [SerializeField]
+    private List<GameObject> _EnemyAttack;
     void Start()
     {
         _movelock = true;
@@ -22,8 +25,15 @@ public class MoveCountCheck : MonoBehaviour
     {
         if (_movelock)
         {
+            _EnemyAttack.Clear();
             _playerMoveTest._moveCount = 0;
             _movelock = false;
+            _EnemyAttack.Add(GameObject.Find("EnemyAttackColider1"));
+            _EnemyAttack.Add(GameObject.Find("EnemyAttackColider2"));
+            _EnemyAttack.Add(GameObject.Find("EnemyAttackColider3"));
+            _EnemyAttack[0].SetActive(false);
+            _EnemyAttack[1].SetActive(false);
+            _EnemyAttack[2].SetActive(false);
             StartCoroutine(LoadDice());
             //LoadDice();
         }
