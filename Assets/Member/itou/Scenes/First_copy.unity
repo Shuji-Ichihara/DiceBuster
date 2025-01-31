@@ -786,6 +786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 100
   _baseAttackPower: 10
+  _playerHPUI: {fileID: 8886517687830419359}
 --- !u!1 &618806780
 GameObject:
   m_ObjectHideFlags: 0
@@ -3302,6 +3303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6707e98a2d5e6a845aa4d2fc77de1352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerParameter: {fileID: 559721343}
   _hpUI: {fileID: 4763026722769486582}
   _maxHP: 100
 --- !u!114 &8906823953517266091

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class PlayerHPUI : SingletonMonoBehaviour<PlayerHPUI>
 {
+    [SerializeField]
+    private PlayerParameter _playerParameter;
     //HPÉoÅ[
     [SerializeField]
     private Slider _hpUI;
@@ -20,7 +22,7 @@ public class PlayerHPUI : SingletonMonoBehaviour<PlayerHPUI>
     void Start()
     {
         //èâä˙ê›íË
-        _currentHP = GameManager.Instance.PlayerParameter.GetMaxHp();
+        _currentHP = _playerParameter.Hp;
         UpdateHP();
     }
 
@@ -40,27 +42,14 @@ public class PlayerHPUI : SingletonMonoBehaviour<PlayerHPUI>
         UpdateHP();
     }
 
-    private void UpdateHP()
+    public void UpdateHP()
     {
-        _hpUI.value = _currentHP / GameManager.Instance.PlayerParameter.GetMaxHp();
+        _hpUI.value = _playerParameter.Hp / _currentHP;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GetComponent<PlayerHPUI>().Damage(10f);
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            GetComponent<PlayerHPUI>().Heal(10f);
-        }
-    }
 
-    public void SetUpHpBar(PlayerParameter parameter)
-    {
-        _currentHP = parameter.GetMaxHp();
-        UpdateHP();
     }
 }
