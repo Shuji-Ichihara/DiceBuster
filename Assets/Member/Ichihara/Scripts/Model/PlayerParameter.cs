@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,6 +43,8 @@ public class PlayerParameter : MonoBehaviour
                 break;
             case FieldType.Guard:
                 break;
+            default:
+                break;
         }
     }
 
@@ -67,25 +69,25 @@ public class PlayerParameter : MonoBehaviour
             {
                 case 0:
                     Vector3 dummyforwardFieldInfo = fieldInfoPosition + Vector3.forward * fieldSideLength;
-                    // ˆê”Ôã‚Ìs‚ÉƒvƒŒƒCƒ„[‚ª‚¢‚éê‡Aã‘¤‚Ìƒ}ƒX‚ª‘¶İ‚µ‚È‚¢ˆ×ˆ—‚ğƒXƒLƒbƒv
+                    // ä¸€ç•ªä¸Šã®è¡Œã«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒã„ã‚‹å ´åˆã€ä¸Šå´ã®ãƒã‚¹ãŒå­˜åœ¨ã—ãªã„ç‚ºå‡¦ç†ã‚’ã‚¹ã‚­ãƒƒãƒ—
                     if (dummyforwardFieldInfo.z > 10f * (FieldGenerater.Instance.FieldHeight - 1)) continue;
                     dummyTransform = FieldGenerater.Instance.GetFieldInfoInGrid(dummyforwardFieldInfo).transform;
                     break;
                 case 1:
                     Vector3 dummyrightFieldInfo = fieldInfoPosition + Vector3.right * fieldSideLength;
-                    // ˆê”Ô‰E‚Ì—ñ‚ÉƒvƒŒƒCƒ„[‚ª‚¢‚éê‡A‰E‘¤‚Ìƒ}ƒX‚ª‘¶İ‚µ‚È‚¢ˆ×ˆ—‚ğƒXƒLƒbƒv
+                    // ä¸€ç•ªå³ã®åˆ—ã«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒã„ã‚‹å ´åˆã€å³å´ã®ãƒã‚¹ãŒå­˜åœ¨ã—ãªã„ç‚ºå‡¦ç†ã‚’ã‚¹ã‚­ãƒƒãƒ—
                     if (dummyrightFieldInfo.x > 10f * (FieldGenerater.Instance.FieldWidth - 1)) continue;
                     dummyTransform = FieldGenerater.Instance.GetFieldInfoInGrid(dummyrightFieldInfo).transform;
                     break;
                 case 2:
                     Vector3 dummybackwardFieldInfo = fieldInfoPosition + Vector3.back * fieldSideLength;
-                    // ˆê”Ô‰º‚Ìs‚ÉƒvƒŒƒCƒ„[‚ª‚¢‚éê‡A‰º‘¤‚Ìƒ}ƒX‚ª‘¶İ‚µ‚È‚¢ˆ×ˆ—‚ğƒXƒLƒbƒv
+                    // ä¸€ç•ªä¸‹ã®è¡Œã«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒã„ã‚‹å ´åˆã€ä¸‹å´ã®ãƒã‚¹ãŒå­˜åœ¨ã—ãªã„ç‚ºå‡¦ç†ã‚’ã‚¹ã‚­ãƒƒãƒ—
                     if (dummybackwardFieldInfo.z < 0f) continue;
                     dummyTransform = FieldGenerater.Instance.GetFieldInfoInGrid(dummybackwardFieldInfo).transform;
                     break;
                 case 3:
                     Vector3 dummyleftFieldInfo = fieldInfoPosition + Vector3.left * fieldSideLength;
-                    // ˆê”Ô¶‚Ì—ñ‚ÉƒvƒŒƒCƒ„[‚ª‚¢‚éê‡A¶‘¤‚Ìƒ}ƒX‚ª‘¶İ‚µ‚È‚¢ˆ×ˆ—‚ğƒXƒLƒbƒv
+                    // ä¸€ç•ªå·¦ã®åˆ—ã«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒã„ã‚‹å ´åˆã€å·¦å´ã®ãƒã‚¹ãŒå­˜åœ¨ã—ãªã„ç‚ºå‡¦ç†ã‚’ã‚¹ã‚­ãƒƒãƒ—
                     if (dummyleftFieldInfo.x < 0f) continue;
                     dummyTransform = FieldGenerater.Instance.GetFieldInfoInGrid(dummyleftFieldInfo).transform;
                     break;
@@ -111,13 +113,13 @@ public class PlayerParameter : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        // ƒ_ƒ[ƒW‚ğ‘Ì—Í‚©‚çŒ¸Z
+        // ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä½“åŠ›ã‹ã‚‰æ¸›ç®—
         Hp -= damage;
         _playerHPUI.UpdateHP();
-        // ƒƒO‚ğ•\¦
-        Debug.Log("ƒ_ƒ[ƒW—Ê: " + damage + ", c‚èHP: " + Hp);
+        // ãƒ­ã‚°ã‚’è¡¨ç¤º
+        Debug.Log("ãƒ€ãƒ¡ãƒ¼ã‚¸é‡: " + damage + ", æ®‹ã‚ŠHP: " + Hp);
 
-        // ‘Ì—Í‚ª0ˆÈ‰º‚É‚È‚Á‚½‚çƒQ[ƒ€ƒI[ƒo[ˆ—‚ğÀs
+        // ä½“åŠ›ãŒ0ä»¥ä¸‹ã«ãªã£ãŸã‚‰ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼å‡¦ç†ã‚’å®Ÿè¡Œ
         if (Hp <= 0)
         {
             Die();

@@ -29,10 +29,12 @@ public class PlayerMoveTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if(_moveCount >= _moveCountCheck._DiceNum)
         {
             _moveCountCheck._movelock = true;
         }
+        */
     }
 
     public async UniTask MovePlayer()
@@ -49,6 +51,7 @@ public class PlayerMoveTest : MonoBehaviour
                 _playerAttack._Texts[3].text = "あと" + _playerAttack._movecounttext + "マス";
                 await MoveForwardPlayer(Vector3.forward);
                 GameManager.Instance.PlayerParameter.Buff();
+                FieldGenerater.Instance.ChangeField(transform.position);
             }
             if (Input.GetKeyDown(KeyCode.S) && _isMoving == false)
             {
@@ -60,6 +63,7 @@ public class PlayerMoveTest : MonoBehaviour
                 _playerAttack._Texts[3].text = "あと" + _playerAttack._movecounttext + "マス";
                 await MoveBackwardPlayer(Vector3.back);
                 GameManager.Instance.PlayerParameter.Buff();
+                FieldGenerater.Instance.ChangeField(transform.position);
             }
             if (Input.GetKeyDown(KeyCode.A) && _isMoving == false)
             {
@@ -71,6 +75,7 @@ public class PlayerMoveTest : MonoBehaviour
                 _playerAttack._Texts[3].text = "あと" + _playerAttack._movecounttext + "マス";
                 await MoveLefPlayer(Vector3.left);
                 GameManager.Instance.PlayerParameter.Buff();
+                FieldGenerater.Instance.ChangeField(transform.position);
             }
             if (Input.GetKeyDown(KeyCode.D) && _isMoving == false)
             {
@@ -82,6 +87,7 @@ public class PlayerMoveTest : MonoBehaviour
                 _playerAttack._Texts[3].text = "あと" + _playerAttack._movecounttext + "マス";
                 await MoveRightPlayer(Vector3.right);
                 GameManager.Instance.PlayerParameter.Buff();
+                FieldGenerater.Instance.ChangeField(transform.position);
             }
         }
     }
@@ -115,14 +121,13 @@ public class PlayerMoveTest : MonoBehaviour
         while (Mathf.Abs(transform.position.z) <= Mathf.Abs(basePosition.z) + moveVector.z * playerScaleZ - 1
                && transform.position.z < FieldGenerater.Instance.GetGridHeightMax())
         {
-            await UniTask.Yield();
+            await UniTask.Yield(PlayerLoopTiming.Update);
             playerObjectPosition = moveVector * playerScaleZ * Time.deltaTime;
             transform.position += playerObjectPosition;
         }
         var floor = Mathf.Ceil(transform.position.z);
         transform.position = new Vector3(transform.position.x, transform.position.y, floor);
         _moveCount++;
-        FieldGenerater.Instance.ChangeField(transform.position);
         _isMoving = false;
     }
 
@@ -139,14 +144,13 @@ public class PlayerMoveTest : MonoBehaviour
         while (Mathf.Abs(transform.position.z) >= Mathf.Abs(basePosition.z) + moveVector.z * playerScaleZ + 1
                && transform.position.z > FieldGenerater.Instance.GetGridHeightMin())
         {
-            await UniTask.Yield();
+            await UniTask.Yield(PlayerLoopTiming.Update);
             playerObjectPosition = moveVector * playerScaleZ * Time.deltaTime;
             transform.position += playerObjectPosition;
         }
         var floor = Mathf.Floor(transform.position.z);
         transform.position = new Vector3(transform.position.x, transform.position.y, floor);
         _moveCount++;
-        FieldGenerater.Instance.ChangeField(transform.position);
         _isMoving = false;
     }
 
@@ -163,14 +167,13 @@ public class PlayerMoveTest : MonoBehaviour
         while (Mathf.Abs(transform.position.x) >= Mathf.Abs(basePosition.x) + moveVector.x * playerScaleX + 1
                && transform.position.x > FieldGenerater.Instance.GetGridWidthMin())
         {
-            await UniTask.Yield();
+            await UniTask.Yield(PlayerLoopTiming.Update);
             playerObjectPosition = moveVector * playerScaleX * Time.deltaTime;
             transform.position += playerObjectPosition;
         }
         var floor = Mathf.Floor(transform.position.x);
         transform.position = new Vector3(floor, transform.position.y, transform.position.z);
         _moveCount++;
-        FieldGenerater.Instance.ChangeField(transform.position);
         _isMoving = false;
     }
 
@@ -187,14 +190,13 @@ public class PlayerMoveTest : MonoBehaviour
         while (Mathf.Abs(transform.position.x) <= Mathf.Abs(basePosition.x) + moveVector.x * playerScaleX - 1
                && transform.position.x < FieldGenerater.Instance.GetGridWidthMax())
         {
-            await UniTask.Yield();
+            await UniTask.Yield(PlayerLoopTiming.Update);
             playerObjectPosition = moveVector * playerScaleX * Time.deltaTime;
             transform.position += playerObjectPosition;
         }
         var floor = Mathf.Ceil(transform.position.x);
         transform.position = new Vector3(floor, transform.position.y, transform.position.z);
         _moveCount++;
-        FieldGenerater.Instance.ChangeField(transform.position);
         _isMoving = false;
     }
     #endregion

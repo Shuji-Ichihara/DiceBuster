@@ -50,7 +50,7 @@ public class FieldGenerater : SingletonMonoBehaviour<FieldGenerater>
                 int randomNum = (int)(seed * 100);
                 randomNum %= _fieldDataInfo.FieldDataList.Count;
                 // 読み込んだマス効果の情報を生成したマスに渡す
-                _field.SetFieldStatus(_fieldDataInfo.FieldDataList[randomNum], _fieldMaterials[randomNum]);
+                fieldStatus.SetFieldStatus(_fieldDataInfo.FieldDataList[randomNum], _fieldMaterials[randomNum]);
                 _fieldGrid[height, width] = fieldStatus.gameObject;
             }
         }
