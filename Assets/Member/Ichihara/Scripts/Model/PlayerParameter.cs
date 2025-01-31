@@ -38,8 +38,10 @@ public class PlayerParameter : MonoBehaviour
             case FieldType.Health:
                 if (Hp < _maxHp)
                     Hp += status.SizeOfEffect;
+                _playerHPUI.UpdateHP();
                 if (Hp > _maxHp)
                     Hp = _maxHp;
+                _playerHPUI.UpdateHP();
                 break;
             case FieldType.Guard:
                 break;
