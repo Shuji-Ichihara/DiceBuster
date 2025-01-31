@@ -34,11 +34,11 @@ public class FieldDataInfo : MonoBehaviour
     /// <returns></returns>
     public async UniTask LoadFieldData()
     {
-        FieldData fieldData = new FieldData();
         string fieldInfoJson = _fieldInfoJson.ToString();
         JsonNode json = JsonNode.Parse(fieldInfoJson);
         foreach (JsonNode node in json["FieldData"])
         {
+            FieldData fieldData = new FieldData();
             // マスの効果の読み込み
             fieldData.FieldType = (FieldType)Enum.Parse(typeof(FieldType), node["FieldType"].Get<string>());
             // 効果量の読み込み
