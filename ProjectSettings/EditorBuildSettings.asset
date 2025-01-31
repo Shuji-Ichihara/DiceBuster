@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Member/Ichihara/Scenes/First.unity
-    guid: 0734a7622e7c57e42a7df3d90c8dc0d6
+    path: Assets/Member/Metoki/Scenes/TitleScene.unity
+    guid: a5daddea2abc8794289f660712e7ed46
   - enabled: 1
-    path: Assets/Member/Ichihara/Scenes/Second.unity
-    guid: f19d9c0c4919fd347b7cdd4efb2bab07
+    path: Assets/Member/itou/Scenes/First_copy.unity
+    guid: 12530d62673bbb7419f390ae1d1e095d
   - enabled: 1
-    path: Assets/Member/Ichihara/Scenes/Third.unity
-    guid: 435558b0b2199b3469533d1c21170659
+    path: Assets/Member/itou/Scenes/Result_Clear.unity
+    guid: 9c62b6245f4556e4381e581484fe8a4f
+  - enabled: 1
+    path: Assets/Member/itou/Scenes/Result_miss.unity
+    guid: f28b9f2385fe67a418df698b8ab476ba
   m_configObjects: {}

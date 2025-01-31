@@ -5,11 +5,7 @@ using UnityEngine;
 public class EnemyGenerater : SingletonMonoBehaviour<EnemyGenerater>
 {
     [SerializeField]
-    private Enemy _enemy1 = null;
-    [SerializeField]
-    private Enemy _enemy2 = null;
-    [SerializeField]
-    private Enemy _enemy3 = null;
+    private List<Enemy> _enemies = new List<Enemy>();
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +15,9 @@ public class EnemyGenerater : SingletonMonoBehaviour<EnemyGenerater>
 
     public void GenerateEnemy()
     {
-        Instantiate(_enemy1, FieldGenerater.Instance.GetGridPosition(0,2), Quaternion.identity);
-        Instantiate(_enemy2, FieldGenerater.Instance.GetGridPosition(2,6), Quaternion.identity);
-        Instantiate(_enemy3, FieldGenerater.Instance.GetGridPosition(4,8), Quaternion.identity);
+        Instantiate(_enemies[0], FieldGenerater.Instance.GetGridPosition(0,2), Quaternion.identity);
+        Instantiate(_enemies[1], FieldGenerater.Instance.GetGridPosition(2,6), Quaternion.identity);
+        Instantiate(_enemies[2], FieldGenerater.Instance.GetGridPosition(4,8), Quaternion.identity);
     }
 
 }

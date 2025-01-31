@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+Ôªøusing Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,7 +30,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         while (GameClear == false)
         {
-            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+            await UniTask.Yield(PlayerLoopTiming.Update);
             await PlayerTurn();
         }
     }
@@ -49,17 +49,17 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private async UniTask PlayerTurn()
     {
-        // à⁄ìÆ
+        // ÁßªÂãï
         MoveCount = RandomMoveCount();
         while (MoveCount > 0)
         {
-            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+            await UniTask.Yield(PlayerLoopTiming.Update);
             await _playerMoveTest.MovePlayer();
         }
         await UniTask.Yield();
-        // çUåÇ
+        // ÊîªÊíÉ
         List<Transform> fieldList = _playerParameter.FoundFieldOfFourDirection();
-        if (fieldList == null) return;
+        if (fieldList == null || fieldList.Count <= 0) return;
         Enemy enemy = null;
         for (int i = 0; i < fieldList.Count; i++)
         {
@@ -74,7 +74,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     /*
     private async UniTask EnemyTurn()
     {
-        // çUåÇ
+        // ÊîªÊíÉ
         var fieldList = _playerParameter.FoundFieldOfFourDirection();
         for (int i = 0; i < fieldList.Count; i++)
         {

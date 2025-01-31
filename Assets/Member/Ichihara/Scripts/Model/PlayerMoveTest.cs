@@ -11,6 +11,11 @@ public class PlayerMoveTest : MonoBehaviour
     private GameObject _playerObject = null;
     private bool _isMoving;
     public int _moveCount;
+    public int _skillmoveCount;
+    [SerializeField]
+    private MoveCountCheck _moveCountCheck;
+    [SerializeField]
+    private PlayerAttack _playerAttack;
 
     private Transform _childTransform = null;
 
@@ -24,46 +29,66 @@ public class PlayerMoveTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        /*
+        if(_moveCount >= _moveCountCheck._DiceNum)
+        {
+            _moveCountCheck._movelock = true;
+        }
+        */
     }
 
     public async UniTask MovePlayer()
     {
-        if (Input.GetKeyDown(KeyCode.W) && _isMoving == false)
+        if (_moveCount < _moveCountCheck._DiceNum)
         {
-            // 光線を飛ばす
-            if (ShootRayFromThePlayer(Vector3.forward) == true) return;
-            _isMoving = true;
-            await MoveForwardPlayer(Vector3.forward);
-            GameManager.Instance.PlayerParameter.Buff();
-            GameManager.Instance.MoveCount--;
-        }
-        if (Input.GetKeyDown(KeyCode.S) && _isMoving == false)
-        {
-            // 光線を飛ばす
-            if (ShootRayFromThePlayer(Vector3.back) == true) return;
-            _isMoving = true;
-            await MoveBackwardPlayer(Vector3.back);
-            GameManager.Instance.PlayerParameter.Buff();
-            GameManager.Instance.MoveCount--;
-        }
-        if (Input.GetKeyDown(KeyCode.A) && _isMoving == false)
-        {
-            // 光線を飛ばす
-            if (ShootRayFromThePlayer(Vector3.left) == true) return;
-            _isMoving = true;
-            await MoveLefPlayer(Vector3.left);
-            GameManager.Instance.PlayerParameter.Buff();
-            GameManager.Instance.MoveCount--;
-        }
-        if (Input.GetKeyDown(KeyCode.D) && _isMoving == false)
-        {
-            // 光線を飛ばす
-            if (ShootRayFromThePlayer(Vector3.right) == true) return;
-            _isMoving = true;
-            await MoveRightPlayer(Vector3.right);
-            GameManager.Instance.PlayerParameter.Buff();
-            GameManager.Instance.MoveCount--;
+            if (Input.GetKeyDown(KeyCode.W) && _isMoving == false)
+            {
+                // 光線を飛ばす
+                if (ShootRayFromThePlayer(Vector3.forward) == true) return;
+                _isMoving = true;
+                _skillmoveCount++;
+                _playerAttack._movecounttext--;
+                _playerAttack._Texts[3].text = "あと" + _playerAttack._movecounttext + "マス";
+                await MoveForwardPlayer(Vector3.forward);
+                GameManager.Instance.PlayerParameter.Buff();
+                FieldGenerater.Instance.ChangeField(transform.position);
+            }
+            if (Input.GetKeyDown(KeyCode.S) && _isMoving == false)
+            {
+                // 光線を飛ばす
+                if (ShootRayFromThePlayer(Vector3.back) == true) return;
+                _isMoving = true;
+                _skillmoveCount++;
+                _playerAttack._movecounttext--;
+                _playerAttack._Texts[3].text = "あと" + _playerAttack._movecounttext + "マス";
+                await MoveBackwardPlayer(Vector3.back);
+                GameManager.Instance.PlayerParameter.Buff();
+                FieldGenerater.Instance.ChangeField(transform.position);
+            }
+            if (Input.GetKeyDown(KeyCode.A) && _isMoving == false)
+            {
+                // 光線を飛ばす
+                if (ShootRayFromThePlayer(Vector3.left) == true) return;
+                _isMoving = true;
+                _skillmoveCount++;
+                _playerAttack._movecounttext--;
+                _playerAttack._Texts[3].text = "あと" + _playerAttack._movecounttext + "マス";
+                await MoveLefPlayer(Vector3.left);
+                GameManager.Instance.PlayerParameter.Buff();
+                FieldGenerater.Instance.ChangeField(transform.position);
+            }
+            if (Input.GetKeyDown(KeyCode.D) && _isMoving == false)
+            {
+                // 光線を飛ばす
+                if (ShootRayFromThePlayer(Vector3.right) == true) return;
+                _isMoving = true;
+                _skillmoveCount++;
+                _playerAttack._movecounttext--;
+                _playerAttack._Texts[3].text = "あと" + _playerAttack._movecounttext + "マス";
+                await MoveRightPlayer(Vector3.right);
+                GameManager.Instance.PlayerParameter.Buff();
+                FieldGenerater.Instance.ChangeField(transform.position);
+            }
         }
     }
 
@@ -96,7 +121,7 @@ public class PlayerMoveTest : MonoBehaviour
         while (Mathf.Abs(transform.position.z) <= Mathf.Abs(basePosition.z) + moveVector.z * playerScaleZ - 1
                && transform.position.z < FieldGenerater.Instance.GetGridHeightMax())
         {
-            await UniTask.Yield();
+            await UniTask.Yield(PlayerLoopTiming.Update);
             playerObjectPosition = moveVector * playerScaleZ * Time.deltaTime;
             transform.position += playerObjectPosition;
         }
@@ -119,7 +144,7 @@ public class PlayerMoveTest : MonoBehaviour
         while (Mathf.Abs(transform.position.z) >= Mathf.Abs(basePosition.z) + moveVector.z * playerScaleZ + 1
                && transform.position.z > FieldGenerater.Instance.GetGridHeightMin())
         {
-            await UniTask.Yield();
+            await UniTask.Yield(PlayerLoopTiming.Update);
             playerObjectPosition = moveVector * playerScaleZ * Time.deltaTime;
             transform.position += playerObjectPosition;
         }
@@ -142,7 +167,7 @@ public class PlayerMoveTest : MonoBehaviour
         while (Mathf.Abs(transform.position.x) >= Mathf.Abs(basePosition.x) + moveVector.x * playerScaleX + 1
                && transform.position.x > FieldGenerater.Instance.GetGridWidthMin())
         {
-            await UniTask.Yield();
+            await UniTask.Yield(PlayerLoopTiming.Update);
             playerObjectPosition = moveVector * playerScaleX * Time.deltaTime;
             transform.position += playerObjectPosition;
         }
@@ -165,7 +190,7 @@ public class PlayerMoveTest : MonoBehaviour
         while (Mathf.Abs(transform.position.x) <= Mathf.Abs(basePosition.x) + moveVector.x * playerScaleX - 1
                && transform.position.x < FieldGenerater.Instance.GetGridWidthMax())
         {
-            await UniTask.Yield();
+            await UniTask.Yield(PlayerLoopTiming.Update);
             playerObjectPosition = moveVector * playerScaleX * Time.deltaTime;
             transform.position += playerObjectPosition;
         }
