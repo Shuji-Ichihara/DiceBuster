@@ -23,6 +23,7 @@ public class MoveCountCheck : MonoBehaviour
     }
     public void RollingDice()
     {
+        //ダイス開始
         if (_movelock)
         {
             _playerMoveTest._moveCount = 0;
