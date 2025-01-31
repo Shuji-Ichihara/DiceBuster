@@ -43,10 +43,10 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("アタック確認");
-
-        if (other.gameObject.tag == "Player") 
+        if (other.gameObject.tag == "Player")
         {
+            Debug.Log("アタック確認");
+
             // 攻撃中でない場合のみ実行
             if (isAttacking) return;
 
