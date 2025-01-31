@@ -81,7 +81,7 @@ public class PlayerAttack : MonoBehaviour
             attack = true;
             _enemy = _Enemys[0].gameObject.GetComponent<Enemy>();
             _enemy.TakeDamage(_playerParameter.AttackPower);
-            Debug.Log("a");
+            _playerParameter.AttackPower = 10;
             _Buttons[0].SetActive(false);
             _Buttons[1].SetActive(false);
             _Buttons[2].SetActive(false);
@@ -96,6 +96,7 @@ public class PlayerAttack : MonoBehaviour
             attack = true;
             _enemy = _Enemys[1].gameObject.GetComponent<Enemy>();
             _enemy.TakeDamage(_playerParameter.AttackPower);
+            _playerParameter.AttackPower = 10;
             _Buttons[0].SetActive(false);
             _Buttons[1].SetActive(false);
             _Buttons[2].SetActive(false);
@@ -110,6 +111,7 @@ public class PlayerAttack : MonoBehaviour
             attack = true;
             _enemy = _Enemys[2].gameObject.GetComponent<Enemy>();
             _enemy.TakeDamage(_playerParameter.AttackPower);
+            _playerParameter.AttackPower = 10;
             _Buttons[0].SetActive(false);
             _Buttons[1].SetActive(false);
             _Buttons[2].SetActive(false);
