@@ -34,11 +34,12 @@ public class PlayerMoveTest : MonoBehaviour
             _moveCountCheck._movelock = true;
             _moveCountCheck.EnemyturnAttack();
         }
+        */
     }
 
     public async UniTask MovePlayer()
     {
-        if (_moveCount < _moveCountCheck._DiceNum)
+        //if (_moveCount < _moveCountCheck._DiceNum)
         {
             if (Input.GetKeyDown(KeyCode.W) && _isMoving == false)
             {
@@ -51,6 +52,7 @@ public class PlayerMoveTest : MonoBehaviour
                 await MoveForwardPlayer(Vector3.forward);
                 GameManager.Instance.PlayerParameter.Buff();
                 FieldGenerater.Instance.ChangeField(transform.position);
+                GameManager.Instance.MoveCount--;
             }
             if (Input.GetKeyDown(KeyCode.S) && _isMoving == false)
             {
@@ -63,6 +65,7 @@ public class PlayerMoveTest : MonoBehaviour
                 await MoveBackwardPlayer(Vector3.back);
                 GameManager.Instance.PlayerParameter.Buff();
                 FieldGenerater.Instance.ChangeField(transform.position);
+                GameManager.Instance.MoveCount--;
             }
             if (Input.GetKeyDown(KeyCode.A) && _isMoving == false)
             {
@@ -75,6 +78,7 @@ public class PlayerMoveTest : MonoBehaviour
                 await MoveLefPlayer(Vector3.left);
                 GameManager.Instance.PlayerParameter.Buff();
                 FieldGenerater.Instance.ChangeField(transform.position);
+                GameManager.Instance.MoveCount--;
             }
             if (Input.GetKeyDown(KeyCode.D) && _isMoving == false)
             {
@@ -87,6 +91,7 @@ public class PlayerMoveTest : MonoBehaviour
                 await MoveRightPlayer(Vector3.right);
                 GameManager.Instance.PlayerParameter.Buff();
                 FieldGenerater.Instance.ChangeField(transform.position);
+                GameManager.Instance.MoveCount--;
             }
         }
     }

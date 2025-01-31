@@ -1,8 +1,12 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static GameManager;
+using static UnityEditor.Lightmapping;
+
 public class MoveCountCheck : MonoBehaviour
 {
     [SerializeField] private Sprite[] _diceSprite;
@@ -24,9 +28,9 @@ public class MoveCountCheck : MonoBehaviour
         _gameStart = false;
         _rend = this.GetComponent<Image>();
     }
-    public void RollingDice()
+    public async void RollingDice()
     {
-        //É_ÉCÉXäJén
+        //ÔøΩ_ÔøΩCÔøΩXÔøΩJÔøΩn
         if (_movelock)
         {
             _playerMoveTest._moveCount = 0;
@@ -41,11 +45,15 @@ public class MoveCountCheck : MonoBehaviour
             _EnemyAttack[0].SetActive(false);
             _EnemyAttack[1].SetActive(false);
             _EnemyAttack[2].SetActive(false);
-            StartCoroutine(LoadDice());
+            //StartCoroutine(LoadDice());
+            await LoadDice();
             //LoadDice();
         }
     }
-    private IEnumerator LoadDice()
+
+
+    //private IEnumerator LoadDice()
+    private async UniTask LoadDice()
     {
         _playerAttack.attack = false;
         _btn.interactable = false;
@@ -53,11 +61,12 @@ public class MoveCountCheck : MonoBehaviour
         {
             _spriteNum = Random.Range(0, _diceSprite.Length);
             _rend.sprite = _diceSprite[_spriteNum];
-            yield return new WaitForSeconds(0.02f);
+            //yield return new WaitForSeconds(0.02f);
+            await UniTask.Yield(PlayerLoopTiming.Update);
         }
-        _DiceNum =_spriteNum + 1;
+        _DiceNum = _spriteNum + 1;
         _playerAttack._movecounttext = _DiceNum;
-        _playerAttack._Texts[3].text = "Ç†Ç∆" + _DiceNum + "É}ÉX";
+        _playerAttack._Texts[3].text = "ÔøΩÔøΩÔøΩÔøΩ" + _DiceNum + "ÔøΩ}ÔøΩX";
         _DiceIconFadeOut.MoveUI();
         _btn.interactable = true;
     }
@@ -85,5 +94,5 @@ public class MoveCountCheck : MonoBehaviour
     */
 }
 
-//éQçlÉTÉCÉg
+//ÔøΩQÔøΩlÔøΩTÔøΩCÔøΩg
 //https://nosystemnolife.com/unity_2ddice/#google_vignette
