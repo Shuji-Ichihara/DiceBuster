@@ -805,7 +805,6 @@ GameObject:
   - component: {fileID: 229020440}
   - component: {fileID: 229020442}
   - component: {fileID: 229020441}
-  - component: {fileID: 229020443}
   m_Layer: 5
   m_Name: RestNumberOfTimes
   m_TagString: Untagged
@@ -874,19 +873,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 229020439}
   m_CullTransparentMesh: 1
---- !u!114 &229020443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 229020439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 269a64b1354ff0b44998f6ec16dc6e1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stepText: {fileID: 229020441}
 --- !u!1 &334240256
 GameObject:
   m_ObjectHideFlags: 0
@@ -2982,6 +2968,7 @@ GameObject:
   - component: {fileID: 1414292554}
   - component: {fileID: 1414292553}
   - component: {fileID: 1414292552}
+  - component: {fileID: 1414292555}
   m_Layer: 5
   m_Name: DiceThrowUI
   m_TagString: Untagged
@@ -3102,6 +3089,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1414292550}
   m_CullTransparentMesh: 1
+--- !u!114 &1414292555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414292550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80804f7788e4fdb44b174d94d2db8c55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDistance: 300
+  moveDuration: 0.3
 --- !u!1 &1434282984
 GameObject:
   m_ObjectHideFlags: 0
