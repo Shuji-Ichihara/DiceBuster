@@ -58,7 +58,7 @@ public class PlayerAttack : MonoBehaviour
             _Enemys.Add(other.gameObject);
         }
     }
-    private void OnTriggerSt1ay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {

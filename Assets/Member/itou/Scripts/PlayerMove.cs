@@ -9,6 +9,9 @@ public class PlayerMove : MonoBehaviour
     public int _movecountmax;
     private int _direction;
     public bool _isMoving;
+
+    private float _moveValue = 0.00555555556f * 10;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,7 +65,7 @@ public class PlayerMove : MonoBehaviour
                 {
                     yield return new WaitForSeconds(0.001f);
                     this.gameObject.transform.Rotate(0.5f, 0, 0, Space.World);
-                    this.transform.position += new Vector3(0, 0, 0.00555555556f);
+                    this.transform.position += new Vector3(0, 0, _moveValue);
                 }
                 //this.transform.rotation = Quaternion.Euler(0, 0, 0);
                 _movecount--;
@@ -73,7 +76,7 @@ public class PlayerMove : MonoBehaviour
                 {
                     yield return new WaitForSeconds(0.001f);
                     this.gameObject.transform.Rotate(-0.5f, 0, 0, Space.World);
-                    this.transform.position += new Vector3(0, 0, -0.00555555556f);
+                    this.transform.position += new Vector3(0, 0, -_moveValue);
                 }
                 //this.transform.rotation = Quaternion.Euler(0, 0, 0);
                 _movecount--;
@@ -84,7 +87,7 @@ public class PlayerMove : MonoBehaviour
                 {
                     yield return new WaitForSeconds(0.001f);
                     this.gameObject.transform.Rotate(0, 0, 0.5f,Space.World);
-                    this.transform.position += new Vector3(-0.00555555556f, 0, 0);
+                    this.transform.position += new Vector3(-_moveValue, 0, 0);
                 }
                 //this.transform.rotation = Quaternion.Euler(0, 0, 0);
                 _movecount--;
@@ -95,7 +98,7 @@ public class PlayerMove : MonoBehaviour
                 {
                     yield return new WaitForSeconds(0.001f);
                     this.gameObject.transform.Rotate(0, 0, -0.5f,Space.World);
-                    this.transform.position += new Vector3(0.00555555556f, 0, 0);
+                    this.transform.position += new Vector3(_moveValue, 0, 0);
                 }
                 //this.transform.rotation = Quaternion.Euler(0, 0, 0);
                 _movecount--;

@@ -14,6 +14,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public bool GameClear = false;
     public int MoveCount = 0;
 
+    [SerializeField]
+    private MoveCountCheck _moveCountCheck = null;
+
     // Start is called before the first frame update
     async void Start()
     {
@@ -28,11 +31,25 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private async UniTask PreUpdate()
     {
+        var enemyList = EnemyGenerater.Instance.GetEnemyList();
         while (GameClear == false)
         {
             await UniTask.Yield(PlayerLoopTiming.Update);
             await PlayerTurn();
+            if (enemyList[0].Health <= 0
+                && enemyList[1].Health <= 0
+                && enemyList[2].Health <= 0)
+            {
+                GameClear = true;
+            }
+            else if (_playerParameter.Hp <= 0)
+            {
+                SceneChangeManager.Instance.CallChangeScene(SceneChangeManager.Instance.SceneNames[3]);
+            }
+            //await EnemyTurn();
         }
+        // クリアシーンに遷移
+        SceneChangeManager.Instance.CallChangeScene(SceneChangeManager.Instance.SceneNames[2]);
     }
 
     // Update is called once per frame
@@ -50,13 +67,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     private async UniTask PlayerTurn()
     {
         // 移動
-        MoveCount = RandomMoveCount();
-        while (MoveCount > 0)
-        {
-            await UniTask.Yield(PlayerLoopTiming.Update);
-            await _playerMoveTest.MovePlayer();
-        }
-        await UniTask.Yield();
+        await Move();
         // 攻撃
         List<Transform> fieldList = _playerParameter.FoundFieldOfFourDirection();
         if (fieldList == null || fieldList.Count <= 0) return;
@@ -71,17 +82,24 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         _playerParameter.Attack(ref enemy);
     }
 
-    /*
+    private async UniTask Move()
+    {
+        int diceNum = _moveCountCheck._DiceNum;
+        MoveCount = diceNum;
+        while (MoveCount > 0)
+        {
+            Debug.Log(MoveCount);
+            await UniTask.Yield(PlayerLoopTiming.Update);
+            await _playerMoveTest.MovePlayer();
+        }
+        MoveCount = 0;
+        _moveCountCheck.ResetDice();
+
+    }
+
     private async UniTask EnemyTurn()
     {
-        // 攻撃
-        var fieldList = _playerParameter.FoundFieldOfFourDirection();
-        for (int i = 0; i < fieldList.Count; i++)
-        {
-            var fieldStatus = fieldList[i].GetComponent<FieldStatus>();
-            if (fieldStatus != null) enemy = fieldStatus.GetEnemy();
-            if (enemy != null) break;
-        }
-        _playerParameter.Attack(ref enemy);
-    }*/
+
+    }
+
 }

@@ -66,7 +66,7 @@ public class MoveCountCheck : MonoBehaviour
         }
         _DiceNum = _spriteNum + 1;
         _playerAttack._movecounttext = _DiceNum;
-        _playerAttack._Texts[3].text = "����" + _DiceNum + "�}�X";
+        _playerAttack._Texts[3].text = "あと" + _DiceNum + "マス";
         _DiceIconFadeOut.MoveUI();
         _btn.interactable = true;
     }
@@ -74,10 +74,16 @@ public class MoveCountCheck : MonoBehaviour
     public void EnemyturnAttack()
     {
         _DiceIconFadeOut.ReturnUI();
-        _EnemyAttack[0].SetActive(true);
-        _EnemyAttack[1].SetActive(true);
-        _EnemyAttack[2].SetActive(true);
+        _EnemyAttack[0]?.SetActive(true);
+        _EnemyAttack[1]?.SetActive(true);
+        _EnemyAttack[2]?.SetActive(true);
     }
+
+    public void ResetDice()
+    {
+        _DiceNum = 0;
+    }
+
     /*
     private void LoadDice()
     {
