@@ -34,7 +34,7 @@ public class PlayerMoveTest : MonoBehaviour
             _moveCountCheck._movelock = true;
             _moveCountCheck.EnemyturnAttack();
         }
-        */
+        
     }
 
     public async UniTask MovePlayer()
