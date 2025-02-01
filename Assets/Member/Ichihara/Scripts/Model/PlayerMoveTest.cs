@@ -29,12 +29,12 @@ public class PlayerMoveTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_moveCount >= _moveCountCheck._DiceNum && _moveCountCheck._gameStart)
+        //if(_moveCount >= _moveCountCheck._DiceNum && _moveCountCheck._gameStart)
+        if(GameManager.Instance.MoveCount >= _moveCountCheck._DiceNum && _moveCountCheck._gameStart)
         {
             _moveCountCheck._movelock = true;
             _moveCountCheck.EnemyturnAttack();
         }
-        
     }
 
     public async UniTask MovePlayer()
@@ -131,7 +131,7 @@ public class PlayerMoveTest : MonoBehaviour
         }
         var floor = Mathf.Ceil(transform.position.z);
         transform.position = new Vector3(transform.position.x, transform.position.y, floor);
-        _moveCount++;
+        //_moveCount++;
         _isMoving = false;
     }
 
@@ -154,7 +154,7 @@ public class PlayerMoveTest : MonoBehaviour
         }
         var floor = Mathf.Floor(transform.position.z);
         transform.position = new Vector3(transform.position.x, transform.position.y, floor);
-        _moveCount++;
+        //_moveCount++;
         _isMoving = false;
     }
 
@@ -177,7 +177,7 @@ public class PlayerMoveTest : MonoBehaviour
         }
         var floor = Mathf.Floor(transform.position.x);
         transform.position = new Vector3(floor, transform.position.y, transform.position.z);
-        _moveCount++;
+        //_moveCount++;
         _isMoving = false;
     }
 
@@ -200,7 +200,7 @@ public class PlayerMoveTest : MonoBehaviour
         }
         var floor = Mathf.Ceil(transform.position.x);
         transform.position = new Vector3(floor, transform.position.y, transform.position.z);
-        _moveCount++;
+        //_moveCount++;
         _isMoving = false;
     }
     #endregion

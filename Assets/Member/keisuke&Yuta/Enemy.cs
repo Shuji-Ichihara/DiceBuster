@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    // 市原追記
+    public int Health => health;
     // ステータス
-    [SerializeField] int Health = 100; // エネミーの体力
-    [SerializeField] int AttackPower = 10; // エネミーの攻撃力
+    [SerializeField] int health = 100; // エネミーの体力
+    [SerializeField] int attackPower = 10; // エネミーの攻撃力
     //アニメーション用
     [SerializeField] Animator animator;
 
@@ -20,13 +22,13 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         // ダメージを体力から減算
-        Health -= damage;
+        health -= damage;
 
         // 現在の体力をログに表示
-        Debug.Log("Enemy took damage: " + damage + ", Remaining health: " + Health);
+        Debug.Log("Enemy took damage: " + damage + ", Remaining health: " + health);
 
         // 体力が0以下になったら死亡処理を呼び出す
-        if (Health <= 0)
+        if (health <= 0)
         {
             Die();
         }
@@ -55,7 +57,7 @@ public class Enemy : MonoBehaviour
 
             PlayerParameter targetPlayer = other.GetComponent<PlayerParameter>();
 
-            targetPlayer.TakeDamage(AttackPower);
+            targetPlayer.TakeDamage(attackPower);
 
             animator.SetTrigger("Attack");
         }
