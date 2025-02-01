@@ -93,7 +93,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             await _playerMoveTest.MovePlayer();
         }
         MoveCount = 0;
-        _moveCountCheck.ResetDice();
+        //_moveCountCheck.ResetDice();
 
     }
 

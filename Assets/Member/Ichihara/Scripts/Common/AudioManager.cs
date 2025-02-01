@@ -6,9 +6,9 @@ using UnityEngine;
 /// </summary>
 public enum BGMType
 {
-    TitleBGM,
-    GameBGM,
-    ResultBGM,
+    MainBGM,
+    ClearBGM,
+    GamerOverBGM,
 }
 
 /// <summary>
@@ -16,14 +16,11 @@ public enum BGMType
 /// </summary>
 public enum SEType
 {
-    Bomb,
-    Hit,
-    Grab,
-    StopTime,
-    Button,
-    Damage,
-    Needle,
-    Fall,
+    PlayerMove,
+    PlayerAttack,
+    EnemyAttack,
+    DiceRoll,
+    Health,
 }
 
 /// <summary>
