@@ -22,6 +22,8 @@ public class MoveCountCheck : MonoBehaviour
     public bool _gameStart;
     [SerializeField]
     private List<GameObject> _EnemyAttack;
+    [SerializeField]
+    private List<TurnUIFadeInOut> _turnUIFadeInOuts;
     void Start()
     {
         _movelock = true;
@@ -71,12 +73,17 @@ public class MoveCountCheck : MonoBehaviour
         _btn.interactable = true;
     }
 
-    public void EnemyturnAttack()
+    public IEnumerator EnemyturnAttack()
     {
-        _DiceIconFadeOut.ReturnUI();
+        _turnUIFadeInOuts[0].MoveUI();
+        _turnUIFadeInOuts[1].MoveUI();
         _EnemyAttack[0]?.SetActive(true);
         _EnemyAttack[1]?.SetActive(true);
         _EnemyAttack[2]?.SetActive(true);
+        yield return new WaitForSeconds(1);
+        _DiceIconFadeOut.ReturnUI();
+        _turnUIFadeInOuts[0].ReturnUI();
+        _turnUIFadeInOuts[1].ReturnUI();
     }
 
     public void ResetDice()

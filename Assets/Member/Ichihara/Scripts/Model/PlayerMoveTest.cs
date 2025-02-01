@@ -30,10 +30,10 @@ public class PlayerMoveTest : MonoBehaviour
     void Update()
     {
         //if(_moveCount >= _moveCountCheck._DiceNum && _moveCountCheck._gameStart)
-        if(GameManager.Instance.MoveCount >= _moveCountCheck._DiceNum && _moveCountCheck._gameStart)
+        if (GameManager.Instance.MoveCount <= 0 && _moveCountCheck._gameStart)
         {
             _moveCountCheck._movelock = true;
-            _moveCountCheck.EnemyturnAttack();
+            StartCoroutine(_moveCountCheck.EnemyturnAttack());
         }
     }
 
