@@ -19,6 +19,7 @@ public class TurnUIFadeInOut : MonoBehaviour
 
     private void Update()
     {
+        /*
         //テスト
         if(Input.GetKeyDown(KeyCode.S))
         {
@@ -29,6 +30,7 @@ public class TurnUIFadeInOut : MonoBehaviour
         {
             ReturnUI();
         }
+        */
     }
     // UIを右に移動する処理
     public void MoveUI()
